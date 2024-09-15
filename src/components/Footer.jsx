@@ -1,0 +1,79 @@
+import React from 'react'
+
+export default function Footer() {
+  return (
+    <footer class="bg-yellow-400 text-black py-10 mt-[100px]">
+    <div class="max-w-7xl mx-auto px-4">
+      {/* <!-- Top Section with Links --> */}
+      <div class="flex flex-wrap justify-between">
+        
+        {/* <!-- About Us --> */}
+        <div class="w-full md:w-1/4 mb-6">
+          <h3 class="font-bold text-lg mb-3">About Us</h3>
+          <p class="text-sm w-[270px]">At Tail's Empire, we are dedicated to providing the best care and accessories for your beloved dogs. Learn more about our mission and values.</p>
+        </div>
+        
+        {/* <!-- Quick Links --> */}
+        <div class="w-full md:w-1/4 mb-6">
+          <h3 class="font-bold text-lg mb-3">Quick Links</h3>
+          <ul>
+            <li><a href="#" class="hover:underline">Categories</a></li>
+            <li><a href="#" class="hover:underline">Editorial</a></li>
+            <li><a href="#" class="hover:underline">About Us</a></li>
+            <li><a href="#" class="hover:underline">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        {/* faq */}
+
+        <div class=" md:w-1/5 mb-6 ml-[-210px] ">
+        <h3 class="font-bold text-lg mb-3 ">FAQs</h3>
+        <ul>
+        <details className='w-[300px]'>
+  <summary>Why do you adopt a dog from us?</summary>
+  <p className='ml-[30px] mt-[2px] bg-yellow-500 p-[2px]'>This is some additional content that can be expanded or collapsed.</p>
+</details>
+
+          <li><a href="#" class="hover:underline">What accessories are available?</a></li>
+          <li><a href="#" class="hover:underline">How to contact customer support?</a></li>
+          <li><a href="#" class="hover:underline">What are the shipping options?</a></li>
+        </ul>
+      </div>
+        {/* <!-- Contact Us --> */}
+        <div class="w-full md:w-1/4 mb-6">
+          <h3 class="font-bold text-lg mb-3">Contact Us</h3>
+          <ul>
+            <li>Email: <a href="mailto:abs12@gmail.com" class="hover:underline">abs12@gmail.com</a></li>
+            <li>Phone: +91-999999999</li>
+            <li>Address: 123 Pet Street, Dog City</li>
+          </ul>
+        </div>
+        
+        {/* <!-- Social Media --> */}
+        <div class="w-full md:w-1/4 mb-6">
+          <h3 class="font-bold text-lg mb-3">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="#"><img src="facebook-icon.svg" alt="Facebook" class="w-6 h-6"/></a>
+            <a href="#"><img src="instagram-icon.svg" alt="Instagram" class="w-6 h-6"/></a>
+            <a href="#"><img src="whatsapp-icon.svg" alt="WhatsApp" class="w-6 h-6"/></a>
+          </div>
+        </div>
+      </div>
+  
+      {/* <!-- Bottom Section with Newsletter and Copyright --> */}
+      <div class="border-t border-black mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm">&copy; 2024 Tail's Empire. All rights reserved.</p>
+        
+        {/* <!-- Newsletter --> */}
+        <div class="flex items-center space-x-3 mt-4 md:mt-0">
+          <label for="newsletter" class="text-sm">Share you Query </label>
+          <input id="newsletter" type="text" placeholder="Enter your Query" class="px-4 py-2 rounded-md bg-white text-black outline-none"/>
+          <button class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800">Submit</button>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  
+  )
+}

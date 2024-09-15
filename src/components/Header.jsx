@@ -1,14 +1,25 @@
 import React from "react";
-import dogtail from "../images/animation-unscreen.gif";
+
+import insta from '../images/video.png'
+import fb from '../images/social-media.png'
+import wp from '../images/whatsapp.png'
 export default function Header() {
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-white ">
  
-      <div className="bg-yellow-500 text-center text-sm text-black border-black border-solid border-[1px] font-bold flex justify-center gap-[50px] h-[40px] py-[10px]">
-        <p>Contact-: +91-9999999</p> 
-        <p>Email-: abs12@gmail.com</p>
-      </div>
+      <div className="bg-yellow-500 text-center text-sm text-black border-black border-solid border-[1px] font-bold flex justify-between  h-[40px] py-[10px] px-[150px]">
+      <div className="flex justify-center gap-[70px]">
+      <p>Contact-: +91-9999999</p> 
+      <p>Email-: abs12@gmail.com</p>
+        </div>  
+        <div className="flex justify-center gap-[30px] mt-[-5px]">
+         <a href=""><img src={insta} className="h-[30px]" /></a>
+         <a href=""><img src={fb} className="h-[30px]  " /></a>
+         <a href=""><img src={wp} className="h-[30px]  " /></a>
+        </div>
      
+      </div>
+      
       <div className="container mx-auto flex  justify-around items-center py-4">
       
         <nav className="flex items-center gap-[30px]">
@@ -64,7 +75,7 @@ export default function Header() {
         </nav>
   
         <div className="font-bold text-3xl text-black flex justify-center gap-0">
-          <img src={dogtail} className="h-[60px] mt-[-10px] ml-[-10px]" />
+          {/* <img src={} className="h-[60px] mt-[-10px] ml-[-10px]" /> */}
       <p className="ml-[-15px]">  Tail's <span className="font-light ml-[5px]"> empire.</span></p>   
         </div>
    

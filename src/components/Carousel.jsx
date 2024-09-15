@@ -1,12 +1,14 @@
 import React from 'react'
-import dog1 from '../images/dog1.webp'
-import dog2 from '../images/animation-unscreen.gif'
+import dog1 from '../images/offer1.png'
+import dog2 from '../images/offer1.png'
+import dog3 from '../images/offer1.png'
+
 import { useState } from 'react';
 export default function Carousel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const slides = [dog1, dog2, '/docs/images/carousel/carousel-3.svg'];
+    const slides = [dog1, dog2, dog3];
   
     const prevSlide = () => {
       setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
@@ -19,19 +21,19 @@ export default function Carousel() {
 <>
 
 
-<div id="default-carousel" className="relative w-[99%] m-auto h-[607px]  rounded border-gray-500 border-[3px]" data-carousel="slide" >
+<div id="default-carousel" className="relative w-[99%] m-auto h-[230px]  rounded mt-[4px]  overflow-hidden" data-carousel="slide" >
       {/* Carousel wrapper */}
-      <div className="relative   rounded-lg md:h-96">
+      <div className="relative  h-[150px] rounded-lg md:h-96">
         {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute w-full h-full transition-all duration-700 ease-in-out ${
-              index === currentSlide ? 'block' : 'hidden'
-            }`}
-          >
+         <div
+         key={index}
+         className={`absolute w-[99%] h-[50%] transition-transform duration-700 ease-in-out mx-[20px]  ${
+           index === currentSlide ? 'translate-x-[1px]' : currentSlide > index ? '-translate-x-full' : 'translate-x-full'
+         }`}
+       >
             <img
               src={slide}
-              className="absolute block w-[98%] h-[570px] ml-[20px] "
+              className="absolute block w-[98%] h-[100%] mx-auto "
               alt={`Slide ${index + 1}`}
             />
           </div>
@@ -39,7 +41,7 @@ export default function Carousel() {
       </div>
 
       {/* Slider indicators */}
-      <div className="absolute z-30 flex -translate-x-1/2 translate-y-[17px] bottom-5 left-1/2 space-x-3">
+      <div className="absolute z-30 flex -translate-x-1/2 translate-y-[18px] bottom-5 left-1/2 space-x-3">
         {slides.map((_, index) => (
           <button
             key={index}
