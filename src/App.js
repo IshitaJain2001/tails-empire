@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import Carousel from "./components/Carousel";
+
 import Categories from "./components/Categories";
-import Demo from "./components/Demo";
+
 import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Shopwithus from "./components/Shopwithus";
-import tuna from "./images/tuna-unscreen.gif"
+import Fishaccess from "./components/Fishaccess";
+
 import DogBreedsSection from "./components/DogsSection";
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import Home from "./components/Home";
@@ -56,7 +55,9 @@ function App() {
 
       <div className="content">
           <Routes>
-            <Route path="/home"  element={<Categories/>} />
+            <Route path="*"  element={<Categories/>} />
+            <Route path="/DOGS-BREEDS" element={<DogBreedsSection/>}/>
+            <Route path="/FISH-ACCESSORIES" element={<Fishaccess/>}/>
             {/* <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} /> */}
           </Routes>

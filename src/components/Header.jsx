@@ -9,7 +9,7 @@ import wpblack from '../images/whatsapp-black.png';
 import wpcolor from '../images/whatsapp-color.png';
 import ytblack from '../images/youtube-black.png';
 import ytcolor from '../images/youtube-color.png';
-
+import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <header className="bg-white fixed top-0 left-0 w-full z-50">
@@ -72,14 +72,25 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="container  flex flex-col md:flex-row justify-evenly items-center py-4  md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
+      <div className="  flex flex-col md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
         <nav className="flex flex-col md:flex-row items-center gap-[20px] md:gap-[30px] mb-2  md:mb-0">
-          <div className="relative group">
-            <button className="font-semibold text-black">CATEGORIES</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="relative group ">
+
+            <Link to="/Home"> <button className="font-semibold text-black">CATEGORIES</button></Link>
+           
+            <div className="absolute left-[-60px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <ul>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 1</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 2</li>
+                <Link to='DOGS-BREEDS'>
+                <li className="px-4 py-2 hover:bg-gray-100">Dog-Breeds</li>
+                </Link>
+   <Link to="/FISH-ACCESSORIES">
+   <li className="px-4 py-2 hover:bg-gray-100">Fish-Accessories</li>
+   </Link>
+              
+                <li className="px-4 py-2 hover:bg-gray-100">Cat-Accessories</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Dog-Food</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Turtle-Food</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Cat-Food</li>
               </ul>
             </div>
           </div>

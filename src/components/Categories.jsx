@@ -6,11 +6,13 @@ import fishacc from '../images/Gemini_Generated_Image_brmf9sbrmf9sbrmf.jpeg';
 import turtlefood from '../images/Gemini_Generated_Image_j0xyk5j0xyk5j0xy.jpeg';
 import catacc from '../images/Gemini_Generated_Image_my5li8my5li8my5l.jpeg';
 import catfood from '../images/Gemini_Generated_Image_gklu46gklu46gklu.jpeg';
-
+import { Link } from 'react-router-dom';
 export default function Categories() {
   const [hovered, setHovered] = useState(null);
 
   return (
+    <Link to="/Home">
+
     <section className="categories-section mt-[40px] md:mt-[70px] lg:mt-[90px] mx-[20px] md:mx-[50px]">
       <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Shop by Category</h2>
       
@@ -25,7 +27,8 @@ export default function Categories() {
         >
           <img src={dogsgrp} alt="Dog Breeds" className="w-full h-[200px] md:h-[250px] lg:h-[300px] object-cover rounded-[20px] md:rounded-[30px] lg:rounded-[40px]" />
           <h3 className="mt-4 text-[20px] md:text-[25px] lg:text-[30px] font-semibold">Dog Breeds</h3>
-          <button className="bg-yellow-400 text-white px-4 py-2 mt-4 rounded">Shop Now</button>
+          <Link to="/DOGS-BREEDS">     <button className="bg-yellow-400 text-white px-4 py-2 mt-4 rounded">Shop Now</button>   </Link>
+       
         </div>
 
         {/* Fish Accessories */}
@@ -38,7 +41,11 @@ export default function Categories() {
         >
           <img src={fishacc} alt="Fish Accessories" className="w-full h-[200px] md:h-[250px] lg:h-[300px] object-cover rounded-[20px] md:rounded-[30px] lg:rounded-[40px]" />
           <h3 className="mt-4 text-[20px] md:text-[25px] lg:text-[30px] font-semibold">Fish Accessories</h3>
+
+          <Link to="/FISH-ACCESSORIES">
           <button className="bg-blue-700 text-white px-4 py-2 mt-4 rounded">Shop Now</button>
+          </Link>
+      
         </div>
 
         {/* Cat Accessories */}
@@ -94,5 +101,6 @@ export default function Categories() {
         </div>
       </div>
     </section>
+    </Link>
   );
 }
