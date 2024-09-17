@@ -10,7 +10,7 @@ export default function Shopwithus() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % values.length);
-    }, 2000);
+    }, 3000);
 
    
     return () => clearInterval(interval);

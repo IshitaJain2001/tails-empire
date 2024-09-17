@@ -1,8 +1,16 @@
 import React from "react";
 
-import insta from '../images/video.png'
-import fb from '../images/social-media.png'
-import wp from '../images/whatsapp.png'
+import igblack from '../images/insta-black.png'
+import igcolor from '../images/insta-color.png'
+import fbblack from '../images/facebook-black.png'
+import fbcolor from '../images/facebook-color.png'
+import wpblack from '../images/whatsapp-black.png'
+import wpcolor from '../images/whatsapp-color.png'
+import ytblack from '../images/youtube-black.png'
+import ytcolor from '../images/youtube-color.png'
+
+
+
 export default function Header() {
   return (
     <header className="bg-white ">
@@ -13,10 +21,57 @@ export default function Header() {
       <p>Email-: abs12@gmail.com</p>
         </div>  
         <div className="flex justify-center gap-[30px] mt-[-5px]">
-         <a href=""><img src={insta} className="h-[30px]" /></a>
-         <a href=""><img src={fb} className="h-[30px]  " /></a>
-         <a href=""><img src={wp} className="h-[30px]  " /></a>
-        </div>
+  <a href="">
+    <div className="relative">
+      <img
+        src={igblack}  // Black Instagram icon
+        className="h-[30px] transition-opacity duration-300 ease-in-out hover:opacity-0" // Fade out on hover
+      />
+      <img
+        src={igcolor} // Colorful Instagram icon
+        className="absolute top-0 left-0 h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100" // Fade in on hover
+      />
+    </div>
+  </a>
+  <a href="">
+    <div className="relative">
+      <img
+        src={fbblack}  // Black Facebook icon
+        className="h-[30px] transition-opacity duration-300 ease-in-out hover:opacity-0" // Fade out on hover
+      />
+      <img
+        src={fbcolor}  // Colorful Facebook icon
+        className="absolute top-0 left-0 h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100" // Fade in on hover
+      />
+    </div>
+  </a>
+  <a href="">
+    <div className="relative">
+      <img
+        src={wpblack}  // Black WhatsApp icon
+        className="h-[30px] transition-opacity duration-300 ease-in-out hover:display-hidden" // Fade out on hover
+      />
+      <img
+        src={wpcolor}  // Colorful WhatsApp icon
+        className="absolute top-0 left-0 h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100" // Fade in on hover
+      />
+    </div>
+  </a>
+
+  <a href="">
+    <div className="relative">
+      <img
+        src={ytblack}  // Black WhatsApp icon
+        className="h-[30px] transition-opacity duration-300 ease-in-out hover:opacity-0" // Fade out on hover
+      />
+      <img
+        src={ytcolor}  // Colorful WhatsApp icon
+        className="absolute top-0 left-0 h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100" // Fade in on hover
+      />
+    </div>
+  </a>
+</div>
+
      
       </div>
       
