@@ -45,28 +45,31 @@ export default function Header() {
             </div>
           </a>
           <a href="">
-            <div className="relative">
+            <div className="relative group">
               <img
                 src={wpblack}
-                className="h-[25px] md:h-[30px] transition-opacity duration-300 ease-in-out hover:h-[0px]"
+                className="h-[25px] md:h-[30px] transition-opacity duration-300 opacity-100 ease-in-out group-hover:opacity-0"
               />
               <img
                 src={wpcolor}
-                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100"
+                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
               />
             </div>
           </a>
           <a href="">
-            <div className="relative">
-              <img
-                src={ytblack}
-                className="h-[25px] md:h-[30px] transition-opacity duration-300 ease-in-out hover:h-[0px]"
-              />
-              <img
-                src={ytcolor}
-                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100"
-              />
-            </div>
+          
+
+<div className="relative group">
+  <img
+    src={ytblack}
+    className="h-[28px] md:h-[30px] transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-0"
+  />
+  <img
+    src={ytcolor}
+    className="absolute top-0 left-0 h-[28px] md:h-[30px] transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
+  />
+</div>
+
           </a>
         </div>
       </div>
