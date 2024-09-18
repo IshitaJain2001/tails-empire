@@ -78,7 +78,7 @@ export default function Header() {
 
             <Link to="/Home"> <button className="font-semibold text-black">CATEGORIES</button></Link>
            
-            <div className="absolute left-[-60px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute left-[-50px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
               <ul>
                 <Link to='DOGS-BREEDS'>
                 <li className="px-4 py-2 hover:bg-gray-100">Dog-Breeds</li>
@@ -97,7 +97,7 @@ export default function Header() {
 
           <div className="relative group">
             <button className="font-semibold text-black">THE EDITORIAL</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute left-[-40px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300  max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
               <ul>
                 <li className="px-4 py-2 hover:bg-gray-100">Option 1</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Option 2</li>
@@ -107,7 +107,7 @@ export default function Header() {
 
           <div className="relative group">
             <button className="font-semibold text-black">ABOUT US</button>
-            <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute left-[-60px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300  max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
               <ul>
                 <li className="px-4 py-2 hover:bg-gray-100">Option 1</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Option 2</li>

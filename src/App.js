@@ -8,6 +8,10 @@ import Fishaccess from "./components/Fishaccess";
 import DogBreedsSection from "./components/DogsSection";
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import Home from "./components/Home";
+import Cataccessories from "./components/Cataccessories";
+import Dogfood from "./components/Dogfoods";
+import Turtlefood from "./components/Turtlefood";
+import CatFood from "./components/Catfood";
 function App() {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -25,19 +29,10 @@ function App() {
     };
   }, []);
   return (
-    // <div className="App">
-
-    //   <Header/> 
-    //  <Carousel/> 
-    //  {/* <Demo/> */}
-    //  <Shopwithus/>
-    //  <Categories/>
-    //  <Footer/>
-    // </div>
-
+   
 <Router>
 <div className="App relative h-screen w-full ">
-      {/* Custom Cursor */}
+
       <div 
         className={`fixed top-0 left-0 w-[20px] h-[20px] bg-black  rounded-full pointer-events-none transform transition-transform duration-200 ease-out ${
           isHovered ? 'scale-150' : ''
@@ -51,15 +46,17 @@ function App() {
  
       <Home/>
 
-      {/* <DogBreedsSection/> */}
+
 
       <div className="content">
           <Routes>
             <Route path="*"  element={<Categories/>} />
             <Route path="/DOGS-BREEDS" element={<DogBreedsSection/>}/>
             <Route path="/FISH-ACCESSORIES" element={<Fishaccess/>}/>
-            {/* <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} /> */}
+            <Route path="/DOGS & CATS-ACCESSORIES" element={<Cataccessories/>}/>
+            <Route path="/DOG-FOOD" element={<Dogfood/>}/>
+            <Route path="/Turtle-food" element={<Turtlefood/>}/>
+            <Route path="/Cat-food" element={<CatFood/>}/>
           </Routes>
         </div>
 
