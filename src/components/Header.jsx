@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 import igblack from '../images/insta-black.png';
 import igcolor from '../images/insta-color.png';
@@ -10,9 +10,13 @@ import wpcolor from '../images/whatsapp-color.png';
 import ytblack from '../images/youtube-black.png';
 import ytcolor from '../images/youtube-color.png';
 import { Link } from "react-router-dom";
+import home from '../images/home.png'
 export default function Header() {
+
+  const [profileclicked,setProfileclicked] = useState(false)
+  const [aboutClicked,setaboutClicked]=useState(false)
   return (
-    <header className="bg-white fixed top-0 left-0 w-full z-50">
+    <header className="bg-white fixed top-0 left-0 w-full z-50 " >
       {/* Top Bar */}
       <div className="bg-yellow-500 text-center text-sm text-black border-black border-solid border-[1px] font-bold flex justify-between h-[40px] py-[10px] px-4 md:px-[150px]">
         <div className="flex justify-center gap-[20px] md:gap-[70px]">
@@ -90,33 +94,25 @@ export default function Header() {
    <li className="px-4 py-2 hover:bg-gray-100">Fish-Accessories</li>
    </Link>
               
-                <li className="px-4 py-2 hover:bg-gray-100">Cat-Accessories</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Dog-Food</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Turtle-Food</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Cat-Food</li>
+        <Link to="/DOGS & CATS-ACCESSORIES"> <li className="px-4 py-2 hover:bg-gray-100">Dog&Cat-Accessories</li>  </Link>       
+         <Link to="/DOG-FOOD"> <li className="px-4 py-2 hover:bg-gray-100">Dog-Food</li>  </Link>      
+            <Link to="/TURTLE-FOOD">   <li className="px-4 py-2 hover:bg-gray-100">Turtle-Food</li> </Link>  
+           <Link to="/CAT-FOOD">  <li className="px-4 py-2 hover:bg-gray-100">Cat-Food</li> </Link>    
               </ul>
             </div>
           </div>
 
-          <div className="relative group">
-            <button className="font-semibold text-black">THE EDITORIAL</button>
-            <div className="absolute left-[-40px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300  max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
-              <ul>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 1</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 2</li>
-              </ul>
-            </div>
-          </div>
+{
+  aboutClicked? <Link to="*"> <button className="font-semibold text-black" onClick={()=>setaboutClicked(false)}>BACK</button>  
+  </Link> 
+  :  
 
-          <div className="relative group">
-            <button className="font-semibold text-black">ABOUT US</button>
-            <div className="absolute left-[-60px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300  max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
-              <ul>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 1</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Option 2</li>
-              </ul>
-            </div>
-          </div>
+  <Link to="/About"> 
+  <button className="font-semibold text-black" onClick={()=>setaboutClicked(true)}>ABOUT US</button>
+ 
+</Link> 
+}
+    
         </nav>
 
         <div className="font-bold text-2xl md:text-3xl text-black text-center">
@@ -134,13 +130,23 @@ export default function Header() {
               🔍
             </button>
           </div>
-          <button className="text-4xl">👤</button>
-          <button className="relative text-4xl">
+          {  profileclicked?
+            ( 
+              <Link to="*">
+             <button> <img src={home} className="h-[30px] opacity-50" onClick={()=>setProfileclicked(false)}/>  </button>
+              </Link>  
+            )
+        
+            :  (<Link to="/Profile"> <button className="text-4xl" onClick={()=>setProfileclicked(true)} >👤</button>   </Link>  )
+          }
+     
+     <Link to="/Cart">     <button className="relative text-4xl">
             🛒
             <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
               0
             </span>
           </button>
+          </Link> 
         </div>
       </div>
     </header>
