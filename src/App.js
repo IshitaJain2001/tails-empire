@@ -15,6 +15,9 @@ import AboutSection from "./components/About";
 import CartPage from "./components/Cartpage";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import AddressForm from "./components/Address";
+import PaymentForm from "./components/Pay";
+import OrderSummary from "./components/Summary";
 function App() {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -67,11 +70,14 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login  />} />
        
-            
+            <Route path="/Address" element={<AddressForm/>}></Route>
           </Routes>
         </div>
 
    <Footer/>
+  
+   <PaymentForm/>
+   <OrderSummary/>
     </div>
 </Router>
    

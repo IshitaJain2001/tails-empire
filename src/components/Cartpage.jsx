@@ -1,5 +1,6 @@
 // CartPage.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const cartItems = [
@@ -60,9 +61,11 @@ const CartPage = () => {
                 <span className="text-lg font-semibold">Total Price:</span>
                 <span className="text-lg font-bold text-gray-800">${totalPrice.toFixed(2)}</span>
               </div>
-              <button className="mt-4 w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
+          <Link to="/Address">
+          <button className="mt-4 w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
                 Proceed to Checkout
               </button>
+          </Link>   
             </div>
           </>
         ) : (
