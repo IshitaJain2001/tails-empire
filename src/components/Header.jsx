@@ -9,6 +9,7 @@ import wpblack from '../images/whatsapp-black.png';
 import wpcolor from '../images/whatsapp-color.png';
 import ytblack from '../images/youtube-black.png';
 import ytcolor from '../images/youtube-color.png';
+import headlogo from '../images/german-shepherd-unscreen.gif';
 import { Link } from "react-router-dom";
 import home from '../images/home.png'
 export default function Header() {
@@ -79,7 +80,7 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="  flex flex-col md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
+      <div className="  flex  md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
         <nav className="flex flex-col md:flex-row items-center gap-[20px] md:gap-[30px] mb-2  md:mb-0">
           <div className="relative group h-full">
 
@@ -115,8 +116,8 @@ export default function Header() {
     
         </nav>
 
-        <div className="font-bold text-2xl md:text-3xl text-black text-center">
-          Tail's <span className="font-light">empire.</span>
+        <div className="flex justify-center align-middle font-bold text-2xl md:text-3xl text-black text-center">
+          <img src={headlogo} alt="german-shepherd" className="h-10"/>Tail's <span className="font-light">Empire.</span>
         </div>
 
         <div className="flex items-center gap-[15px] md:gap-[30px] mt-2 md:mt-0">

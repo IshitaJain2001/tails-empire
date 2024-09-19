@@ -9,7 +9,7 @@ const CartPage = () => {
       name: 'Product 1',
       price: 29.99,
       quantity: 2,
-      image: 'https://via.placeholder.com/100',
+      // image: 'https://via.placeholder.com/100',
     },
     {
       id: 2,
