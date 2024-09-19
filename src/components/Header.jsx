@@ -82,7 +82,7 @@ export default function Header() {
       {/* Main Header */}
       <div className="  flex  md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
         <nav className="flex flex-col md:flex-row items-center gap-[20px] md:gap-[30px] mb-2  md:mb-0">
-          <div className="relative group ">
+          <div className="relative group h-full">
 
             <Link to="/Home"> <button className="font-semibold text-black">CATEGORIES</button></Link>
            

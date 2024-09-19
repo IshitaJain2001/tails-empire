@@ -17,9 +17,7 @@ const AboutSection = () => {
           Our goal is to create a space where your needs come first, and we’re constantly evolving to provide
           the best value for our customers. Join us on this journey as we strive to achieve excellence in everything we do.
         </p>
-        <button className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
-          Learn More
-        </button>
+        
       </div>
     </section>
   );
