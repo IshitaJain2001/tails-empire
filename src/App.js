@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-
-
-
 import Footer from "./components/Footer";
 import Fishaccess from "./components/Fishaccess";
 
@@ -16,6 +13,8 @@ import Profile from "./components/Profile";
 import Categoriesmixed from "./components/Categoriesmixed";
 import AboutSection from "./components/About";
 import CartPage from "./components/Cartpage";
+import Register from "./components/Register";
+import Login from "./components/Login";
 function App() {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -64,6 +63,11 @@ function App() {
             <Route path="/Profile" element={<Profile/>}/>
             <Route path="/About" element={<AboutSection/>}/>
             <Route path="/Cart" element={<CartPage/>}/>
+          
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login  />} />
+       
+            
           </Routes>
         </div>
 

@@ -2,7 +2,6 @@
   "name": "tailsempire",
   "version": "0.1.0",
   "homepage": "https://github.com/IshitaJain2001/tails-empire",
-
   "private": true,
   "dependencies": {
     "@tabler/icons-react": "^3.16.0",
@@ -10,7 +9,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
     "framer-motion": "^11.5.4",
+    "mongoose": "^8.6.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
@@ -23,12 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject" ,
-  
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-
-
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,5 +52,10 @@
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.11"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
