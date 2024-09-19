@@ -23,7 +23,7 @@ const dogBreeds = [
 
 export default function DogBreedsSection() {
   return (
-    <section className="dog-breeds-section py-10">
+    <section className="dog-breeds-section py-10 mt-[100px]">
       <h2 className="text-center text-4xl font-bold mb-6">Dog Breeds</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 ">
         {dogBreeds.map((breed, index) => (

@@ -34,7 +34,7 @@ export default function Cataccessories() {
         // Add more breeds as needed
       ];
       return (
-    <section className="dog-breeds-section py-10">
+    <section className="dog-breeds-section py-10 mt-[100px]">
           <h2 className="text-center text-4xl font-bold mb-6">Dogs & Cats Accessories</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 ">
             {fishacc.map((breed, index) => (

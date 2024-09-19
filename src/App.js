@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Categories from "./components/Categories";
+
 
 import Footer from "./components/Footer";
 import Fishaccess from "./components/Fishaccess";
@@ -12,6 +12,10 @@ import Cataccessories from "./components/Cataccessories";
 import Dogfood from "./components/Dogfoods";
 import Turtlefood from "./components/Turtlefood";
 import CatFood from "./components/Catfood";
+import Profile from "./components/Profile";
+import Categoriesmixed from "./components/Categoriesmixed";
+import AboutSection from "./components/About";
+import CartPage from "./components/Cartpage";
 function App() {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -50,18 +54,20 @@ function App() {
 
       <div className="content">
           <Routes>
-            <Route path="*"  element={<Categories/>} />
+            <Route path="*"  element={<Categoriesmixed/>} />
             <Route path="/DOGS-BREEDS" element={<DogBreedsSection/>}/>
             <Route path="/FISH-ACCESSORIES" element={<Fishaccess/>}/>
             <Route path="/DOGS & CATS-ACCESSORIES" element={<Cataccessories/>}/>
             <Route path="/DOG-FOOD" element={<Dogfood/>}/>
             <Route path="/Turtle-food" element={<Turtlefood/>}/>
             <Route path="/Cat-food" element={<CatFood/>}/>
+            <Route path="/Profile" element={<Profile/>}/>
+            <Route path="/About" element={<AboutSection/>}/>
+            <Route path="/Cart" element={<CartPage/>}/>
           </Routes>
         </div>
 
-        <Footer />
-      
+   <Footer/>
     </div>
 </Router>
    
