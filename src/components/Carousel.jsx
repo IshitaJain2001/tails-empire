@@ -13,9 +13,14 @@ const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [dog1, dog2, dog3, dog4, dog5, dog6, dog7];
 
-  // Next Slide Function
+  // Next Slide Function (Moves forward)
   const nextSlide = () => {
     setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
+  };
+
+  // Previous Slide Function (Moves backward)
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
   };
 
   // useEffect to handle automatic sliding
@@ -47,8 +52,27 @@ const Carousel = () => {
           ))}
         </div>
 
+
+
+
+        {/* Left Button */}
+        <button
+          className="absolute top-1/2 left-6 transform -translate-y-11 bg-gray-700 text-white px-6 py-4 rounded-full  opacity-40"
+          onClick={prevSlide}
+        >
+          &#10094;
+        </button>
+
+        {/* Right Button */}
+        <button
+          className="absolute top-1/2 right-6 transform -translate-y-11 bg-gray-700 text-white px-6 py-4 rounded-full  opacity-40"
+          onClick={nextSlide}
+        >
+          &#10095;
+        </button>
+
         {/* Slider indicators */}
-        <div className="absolute z-30 flex -translate-x-1/2 translate-y-[18px] bottom-5 left-1/2 space-x-3">
+        {/* <div className="absolute z-30 flex -translate-x-1/2 translate-y-[18px] bottom-5 left-1/2 space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -60,7 +84,7 @@ const Carousel = () => {
               aria-label={`Slide ${index + 1}`}
             ></button>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
