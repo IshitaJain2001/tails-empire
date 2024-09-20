@@ -1,37 +1,4 @@
 
-// import React, { useState } from "react";
-// import Register from "./Register";
-// import Login from "./Login";
-// import { Link, Route, Routes } from "react-router-dom";
-// // import Login from "./Login";
-// // import ProfileDetails from "./ProfileDetails";
-
-// const Profile = () => {
-//   const [isLoggedIn, setIsLoggedIn] = useState(true);
-//   const [user, setUser] = useState(null);
-
-//   const handleLogin = (userData) => {
-//     setUser(userData);
-//     setIsLoggedIn(true);
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center pt-[150px]">
-//       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-//    <Link to="/Register">  <button> Register  </button> </Link>    / <Link to='/Login'> <button>Login</button></Link>  
-//        <Routes>
-//         <Route path="/Register" element={<Register/>}>     </Route>
-// <Route path="/Login" element={<Login/>} />
-    
-//        </Routes>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
 import React, { useState } from "react";
 import Register from "./Register";
 import Login from "./Login";

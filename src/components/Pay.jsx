@@ -1,4 +1,4 @@
-// src/components/PaymentForm.js
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 mt-[120px] ml-[570px]">
       <h1 className="text-2xl font-bold">Select Payment Method</h1>
       <div className="my-4">
         <label className="flex items-center">

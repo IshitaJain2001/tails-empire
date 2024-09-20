@@ -1,4 +1,4 @@
-// src/components/OrderSummary.js
+
 import { useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {

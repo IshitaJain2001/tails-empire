@@ -71,12 +71,14 @@ function App() {
           <Route path="/login" element={<Login  />} />
        
             <Route path="/Address" element={<AddressForm/>}></Route>
+            <Route path="/Payment" element={<PaymentForm/>} ></Route>
+            <Route path="/finalCkeckout" element={<OrderSummary/>}></Route>
           </Routes>
         </div>
 
    <Footer/>
   
-   <PaymentForm/>
+
    <OrderSummary/>
     </div>
 </Router>

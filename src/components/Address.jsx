@@ -1,7 +1,7 @@
 
-// src/components/AddressForm.js
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddressForm = () => {
   const navigate = useNavigate();
@@ -65,9 +65,12 @@ const AddressForm = () => {
           onChange={handleChange}
         />
       </div>
+      <Link to="/Payment">
       <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={handleNext}>
         Proceed To Pay
       </button>
+      </Link>
+   
     </div>
   );
 };

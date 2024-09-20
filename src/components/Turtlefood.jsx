@@ -27,7 +27,7 @@ export default function Turtlefood() {
         //   image: `${catgroom}`,
           description: 'Bulldogs are known for their muscular build and wrinkled face. They are calm, courageous, and have a friendly demeanor, making them great companions.'
         },
-        // Add more breeds as needed
+      
       ];
       return (
     <section className="dog-breeds-section py-10 mt-[100px]">
