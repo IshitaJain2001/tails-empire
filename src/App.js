@@ -18,8 +18,11 @@ import Login from "./components/Login";
 import AddressForm from "./components/Address";
 import PaymentForm from "./components/Pay";
 import OrderSummary from "./components/Summary";
+import { Provider, useSelector } from "react-redux";
+import { storeProvider } from "./store";
 function App() {
-
+const state= useSelector(state=>state.wordsearched)
+console.log(state)
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -35,7 +38,9 @@ function App() {
     };
   }, []);
   return (
-   
+   <>
+
+
 <Router>
 <div className="App relative h-screen w-full ">
 
@@ -82,7 +87,7 @@ function App() {
    <OrderSummary/>
     </div>
 </Router>
-   
+</>
   );
 }
 

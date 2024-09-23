@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import igblack from '../images/insta-black.png';
 import igcolor from '../images/insta-color.png';
@@ -12,10 +12,27 @@ import ytcolor from '../images/youtube-color.png';
 import headlogo from '../images/german-shepherd-unscreen.gif';
 import { Link } from "react-router-dom";
 import home from '../images/home.png'
+import { useDispatch, useSelector } from "react-redux";
+import { li, ul } from "framer-motion/client";
 export default function Header() {
 
   const [profileclicked,setProfileclicked] = useState(false)
   const [aboutClicked,setaboutClicked]=useState(false)
+  const [inputtext,setInputtext] = useState("")
+  const dispatch= useDispatch()
+  console.log(inputtext)
+const state=useSelector(state=>state.wordsearched)
+console.log("--------------------",state)
+  useEffect(()=>{
+    dispatch({
+      type:"SEARCH_ITEMS",
+      payload: inputtext
+    })
+  },[inputtext])
+  function changed(e){
+    setInputtext(e.target.value)
+  
+  }
   return (
     <header className="bg-white fixed top-0 left-0 w-full z-50 " >
       {/* Top Bar */}
@@ -125,9 +142,9 @@ export default function Header() {
             <input
               type="text"
               placeholder="SEARCH"
-              className="border border-gray-500 rounded-full py-1 px-3 text-sm w-full md:w-[250px]"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[22px]">
+              className="border border-gray-500 rounded-full py-1 px-3 text-sm w-full md:w-[250px] "
+         onChange={changed }   />
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[22px] ">
               🔍
             </button>
           </div>
@@ -150,6 +167,20 @@ export default function Header() {
           </Link> 
         </div>
       </div>
+
+
+<ul className="bg-gray-400 ml-[700px]"> 
+      {
+state.length>0?
+
+  state.map((word,index)=>{
+    return  <li key={index}>{word}</li>
+  })
+
+
+:<li></li>
+      }
+      </ul>
     </header>
   );
 }
