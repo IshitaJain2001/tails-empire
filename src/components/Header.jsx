@@ -13,7 +13,8 @@ import headlogo from '../images/german-shepherd-unscreen.gif';
 import { Link } from "react-router-dom";
 import home from '../images/home.png'
 import { useDispatch, useSelector } from "react-redux";
-import { li, ul } from "framer-motion/client";
+import { ul } from "framer-motion/client";
+
 export default function Header() {
 
   const [profileclicked,setProfileclicked] = useState(false)
@@ -169,16 +170,17 @@ console.log("--------------------",state)
       </div>
 
 
-<ul className="bg-gray-400 ml-[700px]"> 
+<ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]"> 
       {
 state.length>0?
+
 
   state.map((word,index)=>{
     return  <li key={index}>{word}</li>
   })
 
 
-:<li></li>
+: <li></li>
       }
       </ul>
     </header>

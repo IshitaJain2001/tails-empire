@@ -9,17 +9,21 @@ const reducerfn=(state=initialState,action)=>{
 switch(action.type){
 
           case "SEARCH_ITEMS":
-           
+            
             const filteredItems = state.listofItems.filter((item) =>
               item.toLowerCase().includes(action.payload.toLowerCase())
             );
             return {
               ...state,
-              wordsearched: filteredItems, // Update searched words list
+              wordsearched: filteredItems,
             };
       
           default:
-            return state;
+          
+            return {
+                ...state,
+                wordsearched:[]
+            };
         }
       };
  const store=createStore(reducerfn)

@@ -1,4 +1,4 @@
-// AboutSection.jsx
+
 import React from 'react';
 
 const AboutSection = () => {
