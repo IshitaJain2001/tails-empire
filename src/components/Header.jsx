@@ -17,7 +17,7 @@ export default function Header() {
   const [profileclicked,setProfileclicked] = useState(false)
   const [aboutClicked,setaboutClicked]=useState(false)
   return (
-    <header className="bg-white fixed top-0 left-0 w-full z-50 " >
+    <header className="bg-white relative  left-0 w-full z-50 " >
       {/* Top Bar */}
       <div className="bg-yellow-500 text-center text-sm text-black border-black border-solid border-[1px] font-bold flex justify-between h-[40px] py-[10px] px-4 md:px-[150px]">
         <div className="flex justify-center gap-[20px] md:gap-[70px]">
@@ -80,11 +80,11 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="  flex  md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
+      <div className=" sticky top-0 flex md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
         <nav className="flex flex-col md:flex-row items-center gap-[20px] md:gap-[30px] mb-2  md:mb-0">
           <div className="relative group h-full">
 
-            <Link to="/Home"> <button className="font-semibold text-black">CATEGORIES</button></Link>
+             <button className="font-semibold text-black">CATEGORIES</button>
            
             <div className="absolute left-[-50px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
               <ul>
@@ -116,11 +116,11 @@ export default function Header() {
     
         </nav>
 
-        <div className="flex justify-center align-middle font-bold text-2xl md:text-3xl text-black text-center">
+       <Link to="Home"> <div className="flex justify-center items-center pl-20 font-bold text-2xl md:text-3xl text-black text-center">
           <img src={headlogo} alt="german-shepherd" className="h-10"/>Tail's <span className="font-light">Empire.</span>
-        </div>
+        </div></Link>
 
-        <div className="flex items-center gap-[15px] md:gap-[30px] mt-2 md:mt-0">
+        <div className="flex justify-between items-center gap-[15px] md:gap-[30px] mt-2 md:mt-0">
           <div className="relative w-full md:w-auto">
             <input
               type="text"

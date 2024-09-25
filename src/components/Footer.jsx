@@ -83,6 +83,14 @@
 
 
 import React from 'react';
+import igblack from '../images/insta-black.png';
+import igcolor from '../images/insta-color.png';
+import fbblack from '../images/facebook-black.png';
+import fbcolor from '../images/facebook-color.png';
+import wpblack from '../images/whatsapp-black.png';
+import wpcolor from '../images/whatsapp-color.png';
+import ytblack from '../images/youtube-black.png';
+import ytcolor from '../images/youtube-color.png';
 
 export default function Footer() {
   return (
@@ -133,13 +141,58 @@ export default function Footer() {
           </div>
           
           {/* <!-- Social Media --> */}
-          <div className="w-full md:w-1/4 mb-6">
-            <h3 className="font-bold text-lg mb-3">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="#"><img src="facebook-icon.svg" alt="Facebook" className="w-6 h-6"/></a>
-              <a href="#"><img src="instagram-icon.svg" alt="Instagram" className="w-6 h-6"/></a>
-              <a href="#"><img src="whatsapp-icon.svg" alt="WhatsApp" className="w-6 h-6"/></a>
+          <div className="flex justify-center gap-[15px] md:gap-[30px] mt-[-5px]">
+          <a href="">
+            <div className="relative">
+              <img
+                src={igblack}
+                className="h-[25px] md:h-[30px] transition-opacity duration-300 ease-in-out hover:opacity-0"
+              />
+              <img
+                src={igcolor}
+                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100"
+              />
             </div>
+          </a>
+          <a href="">
+            <div className="relative">
+              <img
+                src={fbblack}
+                className="h-[25px] md:h-[30px] transition-opacity duration-300 ease-in-out hover:opacity-0"
+              />
+              <img
+                src={fbcolor}
+                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100"
+              />
+            </div>
+          </a>
+          <a href="">
+            <div className="relative group">
+              <img
+                src={wpblack}
+                className="h-[25px] md:h-[30px] transition-opacity duration-300 opacity-100 ease-in-out group-hover:opacity-0"
+              />
+              <img
+                src={wpcolor}
+                className="absolute top-0 left-0 h-[25px] md:h-[30px] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+              />
+            </div>
+          </a>
+          <a href="">
+          
+
+<div className="relative group">
+  <img
+    src={ytblack}
+    className="h-[28px] md:h-[30px] transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-0"
+  />
+  <img
+    src={ytcolor}
+    className="absolute top-0 left-0 h-[28px] md:h-[30px] transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
+  />
+</div>
+
+          </a>
           </div>
         </div>
     
