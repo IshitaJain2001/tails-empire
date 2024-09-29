@@ -9,21 +9,24 @@ const reducerfn=(state=initialState,action)=>{
 switch(action.type){
 
           case "SEARCH_ITEMS":
-            
-            const filteredItems = state.listofItems.filter((item) =>
-              item.toLowerCase().includes(action.payload.toLowerCase())
-            );
+            if(action.payload){
+              const filteredItems = state.listofItems.filter((item) =>
+                item.toLowerCase().includes(action.payload.toLowerCase())
+              );
+              return {
+                ...state,
+                wordsearched: filteredItems,
+              };
+            }
             return {
               ...state,
-              wordsearched: filteredItems,
+              wordsearched: [],
             };
+           
       
           default:
           
-            return {
-                ...state,
-                wordsearched:[]
-            };
+           return state
         }
       };
  const store=createStore(reducerfn)
@@ -31,6 +34,8 @@ switch(action.type){
 export const StoreProvider=({children})=>{
    return <Provider store={store}>{children}</Provider>
 }
+
+
 
 
 
