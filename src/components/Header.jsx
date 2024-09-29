@@ -13,7 +13,7 @@ import headlogo from '../images/german-shepherd-unscreen.gif';
 import { Link } from "react-router-dom";
 import home from '../images/home.png'
 import { useDispatch, useSelector } from "react-redux";
-import { ul } from "framer-motion/client";
+
 
 export default function Header() {
 
@@ -23,16 +23,17 @@ export default function Header() {
   const dispatch= useDispatch()
   console.log(inputtext)
 const state=useSelector(state=>state.wordsearched)
+
 console.log("--------------------",state)
   useEffect(()=>{
     dispatch({
       type:"SEARCH_ITEMS",
       payload: inputtext
     })
-  },[inputtext])
+  },[inputtext,dispatch])
   function changed(e){
     setInputtext(e.target.value)
-  
+ 
   }
   return (
     <header className="bg-white relative  left-0 w-full z-50 " >
@@ -170,18 +171,18 @@ console.log("--------------------",state)
       </div>
 
 
-<ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]"> 
-      {
-state.length>0?
 
 
-  state.map((word,index)=>{
-    return  <li key={index}>{word}</li>
-  })
-
-
-: <li></li>
-      }
+      <ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]">
+        {inputtext ? ( // Check if there's input before rendering results
+          state.length > 0 ? (
+            state.map((word, index) => (
+              <li key={index}>{word}</li>
+            ))
+          ) : (
+            <li>No Item Found</li>
+          )
+        ) : null} {/* Don't render anything if input is empty */}
       </ul>
     </header>
   );
