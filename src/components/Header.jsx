@@ -43,7 +43,7 @@ console.log("--------------------",state)
     const parts = text.split(regex);
     return parts.map((part, index) =>
       part.toLowerCase() === search.toLowerCase() ? (
-        <span key={index} className="bg-yellow-300 font-bold">{part}</span>
+        <span key={index} className="bg-yellow-200 font-bold">{part}</span>
       ) : (
         part
       )
@@ -185,22 +185,7 @@ console.log("--------------------",state)
       </div>
 
 
-
-{/* 
-      <ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]">
-        {valuee ? ( 
-          state.length > 0 ? (
-            state.map((word, index) => (
-              <li key={index}>{word}</li>
-            ))
-          ) : (
-            <li>No Item Found</li>
-          )
-        ) : null} 
-      </ul> */}
-
-
-<ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]">
+<ul className="bg-gray-200 ml-[970px] z-10 inline-block w-[200px] pl-[50px] absolute mt-[-20px] rounded-[10px] ">
         {valuee ? (
           state.length > 0 ? (
             state.map((word, index) => (

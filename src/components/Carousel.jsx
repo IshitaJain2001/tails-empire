@@ -26,13 +26,13 @@ const Carousel = () => {
 
   useEffect(() => {
     const slideInterval = setInterval(nextSlide, 3000); 
-    // Cleanup interval when the component unmounts or when currentSlide changes
+
     return () => clearInterval(slideInterval);
   }, [currentSlide]);
 
   return (
     <>
-      <div id="default-carousel" className="relative top-[120px] w-[99%] m-auto h-[230px] rounded mt-[4px] overflow-hidden" data-carousel="slide">
+      <div id="default-carousel" className="relative top-[120px] w-[99%] mt-[-100px] mx-auto  h-[230px] rounded z-[-1] overflow-hidden" data-carousel="slide">
         {/* Carousel wrapper */}
         <div className="relative h-[150px] rounded-lg md:h-96">
           {slides.map((slide, index) => (
