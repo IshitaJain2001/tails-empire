@@ -23,7 +23,7 @@ export default function Header() {
   const dispatch= useDispatch()
   console.log(inputtext)
 const state=useSelector(state=>state.wordsearched)
-
+const valuee= inputtext.trim()
 console.log("--------------------",state)
   useEffect(()=>{
     dispatch({
@@ -35,6 +35,20 @@ console.log("--------------------",state)
     setInputtext(e.target.value)
  
   }
+
+
+  const highlightText = (text, search) => {
+    if (!search) return text;
+    const regex = new RegExp(`(${search})`, "gi");
+    const parts = text.split(regex);
+    return parts.map((part, index) =>
+      part.toLowerCase() === search.toLowerCase() ? (
+        <span key={index} className="bg-yellow-300 font-bold">{part}</span>
+      ) : (
+        part
+      )
+    );
+  };
   return (
     <header className="bg-white relative  left-0 w-full z-50 " >
       {/* Top Bar */}
@@ -172,9 +186,9 @@ console.log("--------------------",state)
 
 
 
-
+{/* 
       <ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]">
-        {inputtext ? ( // Check if there's input before rendering results
+        {valuee ? ( 
           state.length > 0 ? (
             state.map((word, index) => (
               <li key={index}>{word}</li>
@@ -182,7 +196,20 @@ console.log("--------------------",state)
           ) : (
             <li>No Item Found</li>
           )
-        ) : null} {/* Don't render anything if input is empty */}
+        ) : null} 
+      </ul> */}
+
+
+<ul className="bg-gray-300 ml-[700px] z-10 inline-block w-[200px] pl-[50px]">
+        {valuee ? (
+          state.length > 0 ? (
+            state.map((word, index) => (
+              <li key={index}>{highlightText(word, inputtext)}</li> // Highlight matching text
+            ))
+          ) : (
+            <li>No Item Found</li>
+          )
+        ) : null}
       </ul>
     </header>
   );
