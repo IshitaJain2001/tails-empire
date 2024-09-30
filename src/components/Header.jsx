@@ -21,10 +21,11 @@ export default function Header() {
   const [aboutClicked,setaboutClicked]=useState(false)
   const [inputtext,setInputtext] = useState("")
   const dispatch= useDispatch()
-  console.log(inputtext)
+
 const state=useSelector(state=>state.wordsearched)
+const itemCount=useSelector(state=>state.itemCount)
 const valuee= inputtext.trim()
-console.log("--------------------",state)
+
   useEffect(()=>{
     dispatch({
       type:"SEARCH_ITEMS",
@@ -43,12 +44,16 @@ console.log("--------------------",state)
     const parts = text.split(regex);
     return parts.map((part, index) =>
       part.toLowerCase() === search.toLowerCase() ? (
-        <span key={index} className="bg-yellow-200 font-bold">{part}</span>
+        <span key={index} className="text-red-500 font-bold">{part}</span>
       ) : (
         part
       )
     );
   };
+
+  function entered(word){
+  setInputtext(word)
+  }
   return (
     <header className="bg-white relative  left-0 w-full z-50 " >
       {/* Top Bar */}
@@ -159,7 +164,9 @@ console.log("--------------------",state)
               type="text"
               placeholder="SEARCH"
               className="border border-gray-500 rounded-full py-1 px-3 text-sm w-full md:w-[250px] "
-         onChange={changed }   />
+         onChange={changed } 
+         value={inputtext}
+         />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[22px] ">
               🔍
             </button>
@@ -173,23 +180,36 @@ console.log("--------------------",state)
         
             :  (<Link to="/Profile"> <button className="text-4xl" onClick={()=>setProfileclicked(true)} >👤</button>   </Link>  )
           }
-     
-     <Link to="/Cart">     <button className="relative text-4xl">
-            🛒
-            <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
-              0
-            </span>
-          </button>
-          </Link> 
+     {
+      itemCount==0?
+      <Link to="/Empty-Cart">
+       <button className="relative text-4xl">
+      🛒
+      <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
+        0
+      </span>
+    </button>
+      </Link>
+      
+      :    <Link to="/Cart">    
+       <button className="relative text-4xl">
+      🛒
+      <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
+        0
+      </span>
+    </button>
+    </Link> 
+     }
+   
         </div>
       </div>
 
 
-<ul className="bg-gray-200 ml-[970px] z-10 inline-block w-[200px] pl-[50px] absolute mt-[-20px] rounded-[10px] ">
+<ul className="bg-gray-200 ml-[970px] z-10 inline-block w-[200px] items-center absolute mt-[-20px] rounded-[10px] ">
         {valuee ? (
           state.length > 0 ? (
             state.map((word, index) => (
-              <li key={index}>{highlightText(word, inputtext)}</li> // Highlight matching text
+              <li key={index} className="hover:bg-gray-300 pl-[50px]" onClick={()=>entered(word)}>{highlightText(word, inputtext)} </li> // Highlight matching text
             ))
           ) : (
             <li>No Item Found</li>

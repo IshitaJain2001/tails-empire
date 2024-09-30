@@ -18,8 +18,10 @@ import Login from "./components/Login";
 import AddressForm from "./components/Address";
 import PaymentForm from "./components/Pay";
 import OrderSummary from "./components/Summary";
-import { Provider, useSelector } from "react-redux";
-import { storeProvider } from "./store";
+import {useSelector } from "react-redux";
+
+import EmptyCart from "./components/EmptyCart";
+import Husky from "./components/Husky";
 function App() {
 const state= useSelector(state=>state.wordsearched)
 console.log(state)
@@ -77,14 +79,17 @@ console.log(state)
        
             <Route path="/Address" element={<AddressForm/>}></Route>
             <Route path="/Payment" element={<PaymentForm/>} ></Route>
-            <Route path="/finalCkeckout" element={<OrderSummary/>}></Route>
+            <Route path="/Order Summary" element={<OrderSummary/>}></Route>
+            <Route path="/Empty-Cart" element={   <EmptyCart/>}></Route>
+            <Route path="/Husky" element={<Husky/>}></Route>
           </Routes>
         </div>
 
    <Footer/>
   
 
-   <OrderSummary/>
+
+
     </div>
 </Router>
 </>

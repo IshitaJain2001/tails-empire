@@ -24,7 +24,7 @@ export default function Categories() {
         <Link to="/DOGS-BREEDS">
         <div 
           className={`category-card bg-yellow-300 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 0 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 0 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 0 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(0)}
           onMouseLeave={() => setHovered(null)}
@@ -38,7 +38,7 @@ export default function Categories() {
         <Link to="/FISH-ACCESSORIES">
         <div 
           className={`category-card bg-blue-500 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 1 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 1 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 1 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(1)}
           onMouseLeave={() => setHovered(null)}
@@ -56,7 +56,7 @@ export default function Categories() {
         <Link to="DOGS & CATS-ACCESSORIES">
         <div 
           className={`category-card bg-yellow-300 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 2 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 2 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 2 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(2)}
           onMouseLeave={() => setHovered(null)}
@@ -74,7 +74,7 @@ export default function Categories() {
      
         <div 
           className={`category-card bg-yellow-300 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 4 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 4 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 4 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(4)}
           onMouseLeave={() => setHovered(null)}
@@ -89,7 +89,7 @@ export default function Categories() {
         <Link to="/Turtle-Food">
         <div 
           className={`category-card bg-blue-500 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 3 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 3 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 3 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(3)}
           onMouseLeave={() => setHovered(null)}
@@ -106,7 +106,7 @@ export default function Categories() {
         <Link to="/Cat-Food">
         <div 
           className={`category-card bg-yellow-300 p-4 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] text-center transition-transform duration-300 ease-out
-          ${hovered !== null && hovered !== 5 ? 'blur-sm scale-[0.95] opacity-90' : ''} 
+          ${hovered !== null && hovered !== 5 ? ' scale-[0.95] opacity-90' : ''} 
           ${hovered === 5 ? 'scale-[1]' : ''}`}
           onMouseEnter={() => setHovered(5)}
           onMouseLeave={() => setHovered(null)}

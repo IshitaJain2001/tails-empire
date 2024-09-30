@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PaymentForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -37,9 +37,11 @@ const PaymentForm = () => {
           <span className="ml-2">Online Payment</span>
         </label>
       </div>
-      <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={handlePayment}>
+   <Link to="/Order Summary">
+   <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={handlePayment}>
         Next: Summary
       </button>
+   </Link>  
     </div>
   );
 };

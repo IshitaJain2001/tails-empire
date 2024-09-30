@@ -1,9 +1,11 @@
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 const initialState= {
-    listofItems:["aquarium","filter","water filter","air filter","husky","dog","cat","shepherd"],
+    listofItems:["aquarium","filter","water filter","air filter","husky","dog","cat","shepherd","shitzu","dog collar","collar","collars","dog collars","dogs","cat collars","cats","bowls","dog bowls","cat bowls",
+      "leash","bowl","tub","bath tub"
+    ],
     wordsearched:[],
-
+itemCount:0
 }
 const reducerfn=(state=initialState,action)=>{
 switch(action.type){
