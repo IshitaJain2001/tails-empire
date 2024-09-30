@@ -5,7 +5,13 @@ const initialState= {
       "leash","bowl","tub","bath tub"
     ],
     wordsearched:[],
+<<<<<<< Updated upstream
 itemCount:0
+=======
+    isHome:false,
+    isBack:false,
+
+>>>>>>> Stashed changes
 }
 const reducerfn=(state=initialState,action)=>{
 switch(action.type){
@@ -29,6 +35,13 @@ switch(action.type){
     ...state,
     wordsearched: filteredItems,
   };
+
+  case "NAVIGATOR":
+    return{
+      ...state,
+      isHome:action.payload.isHome,
+      isBack:action.payload.isBack,
+    }
 
            
             

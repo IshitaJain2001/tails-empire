@@ -13,10 +13,10 @@ export default function Categories() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <Link to="/Home">
+  
 
     <section className="categories-section mt-[40px] md:mt-[70px] lg:mt-[30px] mx-[20px] md:mx-[50px]">
-      <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Shop by Category</h2>
+      {/* <h2 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Shop by Category</h2> */}
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[10px] md:gap-[50px] lg:gap-[30px] mt-[30px] md:mt-[50px]">
         {/* Dog Breeds */}
@@ -119,7 +119,7 @@ export default function Categories() {
       
       </div>
     </section>
-    </Link>
+   
   );
 }
 
