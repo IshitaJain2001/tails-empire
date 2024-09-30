@@ -18,10 +18,15 @@ import Login from "./components/Login";
 import AddressForm from "./components/Address";
 import PaymentForm from "./components/Pay";
 import OrderSummary from "./components/Summary";
+<<<<<<< Updated upstream
 import {useSelector } from "react-redux";
 
 import EmptyCart from "./components/EmptyCart";
 import Husky from "./components/Husky";
+=======
+import {useSelector} from "react-redux";
+
+>>>>>>> Stashed changes
 function App() {
 const state= useSelector(state=>state.wordsearched)
 console.log(state)

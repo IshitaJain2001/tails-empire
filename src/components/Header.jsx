@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import tail from "../images/tail-logo.png"
 
 import igblack from '../images/insta-black.png';
 import igcolor from '../images/insta-color.png';
@@ -17,7 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Header() {
 
-  const [profileclicked,setProfileclicked] = useState(false)
+  const setHome = useSelector(state=>state.isHome);
+  const setBack = useSelector(state=>state.isBack);
   const [aboutClicked,setaboutClicked]=useState(false)
   const [inputtext,setInputtext] = useState("")
   const dispatch= useDispatch()
@@ -56,6 +58,7 @@ const valuee= inputtext.trim()
   }
   return (
     <header className="bg-white relative  left-0 w-full z-50 " >
+
       {/* Top Bar */}
       <div className="bg-yellow-500 text-center text-sm text-black border-black border-solid border-[1px] font-bold flex justify-between h-[40px] py-[10px] px-4 md:px-[150px]">
         <div className="flex justify-center gap-[20px] md:gap-[70px]">
@@ -118,13 +121,30 @@ const valuee= inputtext.trim()
       </div>
 
       {/* Main Header */}
-      <div className=" sticky top-0 flex md:flex-row justify-evenly w-full items-center py-4 px-2 md:px-0" style={{ boxShadow: "1px 1px 4px gray" }}>
-        <nav className="flex flex-col md:flex-row items-center gap-[20px] md:gap-[30px] mb-2  md:mb-0">
-          <div className="relative group h-full">
+      <div className="sticky top-0 flex md:flex-row justify-evenly w-full items-center  
+       py-4 px-2 md:px-0 z-[1000]" style={{ boxShadow: "1px 1px 4px gray" }}>
+
+{/* logo container */}
+<Link to="Home" onClick={()=>{dispatch({
+        type:"NAVIGATOR",
+        payload:{
+          isHome:false,
+        }
+       })}}> <div className="absolute flex justify-center items-center z-50 font-bold text-2xl md:text-3xl text-black text-center left-[592px] top-4" >
+          <img src={headlogo} alt="german-shepherd" className="h-10"/>Tail's <span className="font-light">Empire.</span>
+        </div>
+          <div>
+            <img src={tail} alt="tail-img" className="h-[50px] absolute top-7 left-[627px] -rotate-12" />
+          </div>
+        </Link>
+
+        <nav className="flex items-center relative left-10
+         md:flex-row  gap-[20px] md:gap-[30px] mb-2  md:mb-0 flex-grow">
+          <div className="relative  group h-full">
 
              <button className="font-semibold text-black">CATEGORIES</button>
            
-            <div className="absolute left-[-50px] mt-2 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
+            <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-200 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0  overflow-hidden group-hover:max-h-[400px] group-hover:overflow-visible">
               <ul>
                 <Link to='DOGS-BREEDS'>
                 <li className="px-4 py-2 hover:bg-gray-100">Dog-Breeds</li>
@@ -142,23 +162,31 @@ const valuee= inputtext.trim()
           </div>
 
 {
-  aboutClicked? <Link to="*"> <button className="font-semibold text-black" onClick={()=>setaboutClicked(false)}>BACK</button>  
+  setBack? <Link to="*"> <button className="font-semibold text-black" onClick={()=>dispatch({
+    type:"NAVIGATOR",
+    payload:{
+      isBack:false
+    }
+  })}>BACK</button>  
   </Link> 
   :  
 
   <Link to="/About"> 
-  <button className="font-semibold text-black" onClick={()=>setaboutClicked(true)}>ABOUT US</button>
+  <button className="font-semibold text-black" onClick={()=>dispatch({
+    type:"NAVIGATOR",
+    payload:{
+      isBack:true
+    }
+  })}>ABOUT US</button>
  
 </Link> 
 }
     
         </nav>
 
-       <Link to="Home"> <div className="flex justify-center items-center pl-20 font-bold text-2xl md:text-3xl text-black text-center">
-          <img src={headlogo} alt="german-shepherd" className="h-10"/>Tail's <span className="font-light">Empire.</span>
-        </div></Link>
+       
 
-        <div className="flex justify-between items-center gap-[15px] md:gap-[30px] mt-2 md:mt-0">
+        <div className="relative right-10 flex justify-between items-center gap-[15px] md:gap-[30px] mt-2 md:mt-0">
           <div className="relative w-full md:w-auto">
             <input
               type="text"
@@ -171,14 +199,24 @@ const valuee= inputtext.trim()
               🔍
             </button>
           </div>
-          {  profileclicked?
+          {  setHome?
             ( 
               <Link to="*">
-             <button> <img src={home} className="h-[30px] opacity-50" onClick={()=>setProfileclicked(false)}/>  </button>
+             <button> <img src={home} className="relative h-[30px]  opacity-50" onClick={()=>dispatch({
+              type:"NAVIGATOR",
+              payload:{
+                isHome:false
+              }
+             })}/>  </button>
               </Link>  
             )
         
-            :  (<Link to="/Profile"> <button className="text-4xl" onClick={()=>setProfileclicked(true)} >👤</button>   </Link>  )
+            :  (<Link to="/Profile"> <button className="text-4xl" onClick={()=>dispatch({
+              type:"NAVIGATOR",
+              payload:{
+                isHome:true
+              }
+             })}>👤</button>   </Link>  )
           }
      {
       itemCount==0?
