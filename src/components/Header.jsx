@@ -16,7 +16,9 @@ import home from '../images/home.png'
 import { useDispatch, useSelector } from "react-redux";
 
 
-export default function Header() {
+ function Header() {
+  const [profileclicked,setProfileclicked] = useState(false) 
+  
 
   const setHome = useSelector(state=>state.isHome);
   const setBack = useSelector(state=>state.isBack);
@@ -25,15 +27,19 @@ export default function Header() {
   const dispatch= useDispatch()
 
 const state=useSelector(state=>state.wordsearched)
-const itemCount=useSelector(state=>state.itemCount)
-const valuee= inputtext.trim()
+const added=useSelector(state=>state.itemCount)
+const [value,setValue] = useState(null)
+const val= inputtext.trim()
 
-  useEffect(()=>{
-    dispatch({
-      type:"SEARCH_ITEMS",
-      payload: inputtext
-    })
-  },[inputtext,dispatch])
+useEffect(()=>{
+  dispatch({
+    type:"SEARCH_ITEMS",
+    payload: inputtext
+  })
+  setValue(inputtext.trim())
+},[inputtext])
+
+
   function changed(e){
     setInputtext(e.target.value)
  
@@ -54,6 +60,7 @@ const valuee= inputtext.trim()
   };
 
   function entered(word){
+    setValue(null)
   setInputtext(word)
   }
   return (
@@ -218,13 +225,13 @@ const valuee= inputtext.trim()
               }
              })}>👤</button>   </Link>  )
           }
-     {
-      itemCount==0?
+         {
+   added==0?
       <Link to="/Empty-Cart">
        <button className="relative text-4xl">
       🛒
       <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
-        0
+      0
       </span>
     </button>
       </Link>
@@ -233,18 +240,18 @@ const valuee= inputtext.trim()
        <button className="relative text-4xl">
       🛒
       <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
-        0
+     {added}
       </span>
     </button>
     </Link> 
-     }
+      }
    
         </div>
       </div>
 
 
 <ul className="bg-gray-200 ml-[970px] z-10 inline-block w-[200px] items-center absolute mt-[-20px] rounded-[10px] ">
-        {valuee ? (
+        {value!=null && val ? (
           state.length > 0 ? (
             state.map((word, index) => (
               <li key={index} className="hover:bg-gray-300 pl-[50px]" onClick={()=>entered(word)}>{highlightText(word, inputtext)} </li> // Highlight matching text
@@ -257,3 +264,11 @@ const valuee= inputtext.trim()
     </header>
   );
 }
+
+
+
+export default React.memo(Header);
+
+
+
+
