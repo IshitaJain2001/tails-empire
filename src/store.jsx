@@ -5,13 +5,10 @@ const initialState= {
       "leash","bowl","tub","bath tub"
     ],
     wordsearched:[],
-<<<<<<< Updated upstream
-itemCount:0
-=======
+itemCount:0,
     isHome:false,
     isBack:false,
 
->>>>>>> Stashed changes
 }
 const reducerfn=(state=initialState,action)=>{
 switch(action.type){
