@@ -225,18 +225,8 @@ useEffect(()=>{
               }
              })}>👤</button>   </Link>  )
           }
-         {
-   added==0?
-      <Link to="/Empty-Cart">
-       <button className="relative text-4xl">
-      🛒
-      <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
-      0
-      </span>
-    </button>
-      </Link>
-      
-      :    <Link to="/Cart">    
+        
+        <Link to="/Cart">    
        <button className="relative text-4xl">
       🛒
       <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full px-2 py-0.5">
@@ -244,7 +234,7 @@ useEffect(()=>{
       </span>
     </button>
     </Link> 
-      }
+     
    
         </div>
       </div>

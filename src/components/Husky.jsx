@@ -1,33 +1,43 @@
 
 
 import React from 'react'
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 
-export default function Husky() {
+ function Husky() {
 
 const dispatch= useDispatch()
   const huskies = [
     {
       name: 'Husky-1',
     //   image: `${aquarium}`,
-      description: 'Golden Retrievers are friendly, intelligent, and devoted. They are great family pets and are known for their friendly and tolerant attitude.'
+      description: 'Golden Retrievers are friendly, intelligent, and devoted. They are great family pets and are known for their friendly and tolerant attitude.',
+      price:800
     },
     {
       name: 'husky-2',
     //   image: `${filter}`,
-      description: 'German Shepherds are courageous, confident, and smart. They are known for their loyalty and are often used as working dogs in police and military roles.'
+      description: 'German Shepherds are courageous, confident, and smart. They are known for their loyalty and are often used as working dogs in police and military roles.',
+      price:400
     },
     {
       name: 'husky-3',
     //   image: `${airfilter}`,
-      description: 'Bulldogs are known for their muscular build and wrinkled face. They are calm, courageous, and have a friendly demeanor, making them great companions.'
+      description: 'Bulldogs are known for their muscular build and wrinkled face. They are calm, courageous, and have a friendly demeanor, making them great companions.',
+      price:200
     },
     // Add more breeds as needed
   ];
+ 
+  const productname= useSelector(state=>state.productadded)
+  console.log(productname)
 
- const dispatched=()=>{
+ const dispatched=(payment,item)=>{
     dispatch({
-type:"ITEM_ADDED"
+type:"ITEM_ADDED",
+payload:{
+  pay:payment,
+  item:item
+}
     })
     console.log('dispatched')
  }
@@ -40,7 +50,8 @@ type:"ITEM_ADDED"
             <img src={breed.image} alt={breed.name} className="w-full h-[400px] object-cover"/>
             <div className="p-4">
               <h3 className="text-3xl h-[50px] w-[300px] bg-gray-400 text-center font-semibold py-[5px] mx-auto mb-2">{breed.name}</h3>
-              <button className="text-gray-700 border border-black rounded-[50px]" onClick={dispatched}>ADD TO CART</button>
+              <h3 className="text-3xl h-[50px] w-[300px] bg-gray-400 text-center font-semibold py-[5px] mx-auto mb-2">{breed.price}</h3>
+              <button className="text-gray-700 border border-black rounded-[50px]" onClick={()=>dispatched(`${breed.price}`,`${breed.name}`)}>ADD TO CART</button>
             </div>
           </div>
         ))}
@@ -48,3 +59,5 @@ type:"ITEM_ADDED"
     </section>
   )
 }
+
+export default React.memo(Husky)

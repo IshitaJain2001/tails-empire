@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Fishaccess from "./components/Fishaccess";
-
+import React from "react";
 import DogBreedsSection from "./components/DogsSection";
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import Home from "./components/Home";
@@ -20,13 +20,12 @@ import PaymentForm from "./components/Pay";
 import OrderSummary from "./components/Summary";
 import {useSelector } from "react-redux";
 
-import EmptyCart from "./components/EmptyCart";
 import Husky from "./components/Husky";
 
 
 function App() {
 const state= useSelector(state=>state.wordsearched)
-console.log(state)
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -82,7 +81,7 @@ console.log(state)
             <Route path="/Address" element={<AddressForm/>}></Route>
             <Route path="/Payment" element={<PaymentForm/>} ></Route>
             <Route path="/Order Summary" element={<OrderSummary/>}></Route>
-            <Route path="/Empty-Cart" element={   <EmptyCart/>}></Route>
+            
             <Route path="/Husky" element={<Husky/>}></Route>
           </Routes>
         </div>
@@ -98,4 +97,4 @@ console.log(state)
   );
 }
 
-export default App;
+export default React.memo(App);

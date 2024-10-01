@@ -1,81 +1,217 @@
-// CartPage.jsx
+
+
+// // // import React from 'react';
+// // // import { useSelector } from 'react-redux';
+
+
+
+// // // const CartPage = () => {
+
+// // //   const productname= useSelector(state=>state.productadded)
+// // //   console.log(productname)
+// // //   const productprices= useSelector(state=>state.productprices)
+// // //   console.log(productprices)
+// // //   const totalPrice = productprices.reduce((acc,cv) => Number(cv)+Number(acc), 0);
+// // //   console.log(totalPrice)
+
+// // //   return (
+// // //     <div className="bg-gray-100 min-h-screen py-10 mt-[150px]">
+// // //       <div className="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+// // //         <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
+
+// // //   {
+// // //     productname.length>0?
+// // //     productname.map((product)=>{
+// // //       return <li>{product}</li>
+// // //     })
+// // //     : <li></li>
+
+// // //   }
+// // //       </div>
+// // //     </div>
+// // //   );
+// // // };
+
+// // // export default React.memo( CartPage) ;
+
+
+// // import React from 'react';
+// // import { useSelector } from 'react-redux';
+
+// // const CartPage = () => {
+// //   const productname = useSelector(state => state.productadded);
+// //   const productprices = useSelector(state => state.productprices);
+  
+// //   // Calculate total price
+// //   const totalPrice = productprices.reduce((acc, cv) => Number(cv) + Number(acc), 0);
+
+// //   return (
+// //     <div className="bg-gray-100 min-h-screen py-10 mt-[150px]">
+// //       <div className="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+// //         <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
+        
+// //         {
+// //           productname.length > 0 ? (
+// //             <ul className="space-y-4">
+// //               {productname.map((product, index) => (
+// //                 <li key={index} className="flex justify-between items-center border-b pb-4">
+// //                   <span className="text-lg font-semibold">{product}</span>
+// //                   <span className="text-lg font-semibold">₹{productprices[index]}</span>
+// //                 </li>
+// //               ))}
+// //             </ul>
+// //           ) : (
+// //             <p className="text-center text-gray-500">Your cart is empty.</p>
+// //           )
+// //         }
+        
+// //         {productname.length > 0 && (
+// //           <div className="border-t mt-6 pt-4 flex justify-between items-center">
+// //             <h2 className="text-2xl font-bold">Total Price</h2>
+// //             <span className="text-2xl font-bold">₹{totalPrice}</span>
+// //           </div>
+// //         )}
+// //       </div>
+// //     </div>
+// //   );
+// // };
+
+// // export default React.memo(CartPage);
+
+
+
+// import React from 'react';
+// import { useSelector } from 'react-redux';
+
+// const CartPage = () => {
+//   const productname = useSelector(state => state.productadded);
+//   const productprices = useSelector(state => state.productprices);
+  
+//   // Create an object to count occurrences of each product
+//   const productCount = productname.reduce((acc, product, index) => {
+//     if (acc[product]) {
+//       acc[product].count += 1;
+//       acc[product].price += Number(productprices[index]);
+//     } else {
+//       acc[product] = { count: 1, price: Number(productprices[index]) };
+//     }
+//     return acc;
+//   }, {});
+
+//   // Calculate total price
+//   const totalPrice = Object.values(productCount).reduce((acc, item) => acc + item.price, 0);
+
+//   return (
+//     <div className="bg-gray-100 min-h-screen py-10 ">
+//       <div className="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+//         <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
+        
+//         {
+//           Object.keys(productCount).length > 0 ? (
+//             <ul className="space-y-4">
+//               {Object.keys(productCount).map((product, index) => (
+//                 <li key={index} className="flex justify-between items-center border-b pb-4">
+//                   <span className="text-lg font-semibold">
+//                     {product} {productCount[product].count > 1 && `x${productCount[product].count}`}
+//                   </span>
+//                   <span className="text-lg font-semibold">
+//                     ₹{productCount[product].price}
+//                   </span>
+//                 </li>
+//               ))}
+//             </ul>
+//           ) : (
+//             <p className="text-center text-gray-500">Your cart is empty.</p>
+//           )
+//         }
+        
+//         {Object.keys(productCount).length > 0 && (
+//           <div className="border-t mt-6 pt-4 flex justify-between items-center">
+//             <h2 className="text-2xl font-bold">Total Price</h2>
+//             <span className="text-2xl font-bold">₹{totalPrice}</span>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default React.memo(CartPage);
+
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
-  const cartItems = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 29.99,
-      quantity: 2,
-      image: 'https://via.placeholder.com/100',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 19.99,
-      quantity: 1,
-      image: 'https://via.placeholder.com/100',
-    },
-  ];
+  const productname = useSelector(state => state.productadded);
+  const productprices = useSelector(state => state.productprices);
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  // Create an object to count occurrences of each product
+  const productCount = productname.reduce((acc, product, index) => {
+    if (acc[product]) {
+      acc[product].count += 1;
+      acc[product].price += Number(productprices[index]);
+    } else {
+      acc[product] = { count: 1, price: Number(productprices[index]) };
+    }
+    return acc;
+  }, {});
+
+  // Calculate total price
+  const totalPrice = Object.values(productCount).reduce((acc, item) => acc + item.price, 0);
+
+  // React Router's navigation hook
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10 mt-[150px]">
-      <div className="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
-
-        {cartItems.length > 0 ? (
-          <>
-            <div className="space-y-4">
-              {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between p-4 border-b border-gray-200"
-                >
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-16 h-16 object-cover rounded-md"
-                    />
-                    <div>
-                      <h2 className="text-lg font-semibold">{item.name}</h2>
-                      <p className="text-gray-600">${item.price.toFixed(2)}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-gray-600">Quantity: {item.quantity}</p>
-                  </div>
-                  <div className="font-bold text-gray-800">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6">
-              <div className="flex justify-between items-center py-4 border-t border-gray-200">
-                <span className="text-lg font-semibold">Total Price:</span>
-                <span className="text-lg font-bold text-gray-800">${totalPrice.toFixed(2)}</span>
+    <div className="bg-gray-100 min-h-screen py-10">
+      <div className="max-w-4xl mx-auto bg-gray-100 p-6">
+        <div className="bg-white p-6 shadow-lg rounded-lg">
+          <h1 className="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
+          
+          {
+            Object.keys(productCount).length > 0 ? (
+              <ul className="space-y-4">
+                {Object.keys(productCount).map((product, index) => (
+                  <li key={index} className="flex justify-between items-center border-b pb-4">
+                    <span className="text-lg font-semibold">
+                      {product} {productCount[product].count > 1 && `x${productCount[product].count}`}
+                    </span>
+                    <span className="text-lg font-semibold">
+                      ₹{productCount[product].price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-center text-gray-500">Your cart is empty.</p>
+            )
+          }
+          
+          {Object.keys(productCount).length > 0 && (
+            <>
+              <div className="border-t mt-6 pt-4 flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Total Price</h2>
+                <span className="text-2xl font-bold">₹{totalPrice}</span>
               </div>
-          <Link to="/Address">
-          <button className="mt-4 w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">
-                Proceed to Checkout
-              </button>
-          </Link>   
-            </div>
-          </>
-        ) : (
-          <p className="text-center text-gray-600">Your cart is empty.</p>
-        )}
+              
+              {/* Button to redirect to Address Page */}
+              <div className="mt-6 flex justify-center">
+                <button
+                  onClick={() => navigate('/address')}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+                >
+                  Confirm Address
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default CartPage;
-
+export default React.memo(CartPage);
 
