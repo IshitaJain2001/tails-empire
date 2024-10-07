@@ -1,6 +1,8 @@
 
 
-import { useState } from "react";
+
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddressForm = () => {
@@ -13,6 +15,15 @@ const AddressForm = () => {
     postalCode: "",
   });
 
+  const storedName = localStorage.getItem("name"); // Retrieve name from localStorage
+  const name = storedName || "Guest"; // Fallback to "Guest" if no name found
+  console.log(name);
+
+  // Log the name only when it changes
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
+
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
@@ -22,14 +33,21 @@ const AddressForm = () => {
   };
 
   return (
-    <div className="p-4 mt-[120px] ml-[300px]">
-      <h1 className="text-2xl font-bold">Shipping Address</h1>
-      <div className="my-4">
+    <div
+      style={{
+        padding: "16px",
+        marginTop: "120px",
+        marginLeft: "300px",
+      }}
+    >
+      <h1>Hello, {name}</h1>
+      <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>Shipping Address</h1>
+      <div style={{ margin: "16px 0" }}>
         <input
           type="text"
           name="name"
           placeholder="Name"
-          className="border p-2 w-[400px]"
+          style={{ border: "1px solid", padding: "8px", width: "400px" }}
           onChange={handleChange}
         />
         <br />
@@ -37,7 +55,7 @@ const AddressForm = () => {
           type="text"
           name="phone"
           placeholder="Phone Number"
-          className="border p-2 w-[400px] mt-2"
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
@@ -45,7 +63,7 @@ const AddressForm = () => {
           type="text"
           name="address"
           placeholder="Address"
-          className="border p-2 w-[400px] mt-2"
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
@@ -53,7 +71,7 @@ const AddressForm = () => {
           type="text"
           name="city"
           placeholder="City"
-          className="border p-2 w-[400px] mt-2"
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
@@ -61,18 +79,27 @@ const AddressForm = () => {
           type="text"
           name="postalCode"
           placeholder="Postal Code"
-          className="border p-2 w-[400px] mt-2"
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
       </div>
-      <Link to="/Payment">
-      <button className="bg-blue-500 text-white py-2 px-4 rounded" onClick={handleNext}>
-        Proceed To Pay
-      </button>
+      <Link to="/payment">
+        <button
+          style={{
+            backgroundColor: "#007bff",
+            color: "white",
+            padding: "10px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+          onClick={handleNext}
+        >
+          Proceed To Pay
+        </button>
       </Link>
-   
     </div>
   );
 };
 
-export default AddressForm;
+export default React.memo(AddressForm);

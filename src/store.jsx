@@ -13,7 +13,8 @@ itemCount:0,
     isHome:false,
     isBack:false,
     productadded:[],
-    productprices:[]
+    productprices:[],
+    nameofUser:""
 
 }
 const reducerfn=(state=initialState,action)=>{
@@ -55,7 +56,10 @@ switch(action.type){
           productprices:  [...state.productprices, action.payload.pay],
         } 
 
-      
+      case 'user registered' :return{
+        ...state,
+        nameofUser:action.payload
+      }
           default: return state
         }
       };
