@@ -238,7 +238,7 @@ const Register = () => {
       setPassword("");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to register.");
+      toast.error("Failed to register." +error.message);
     }
   };
 
@@ -247,7 +247,8 @@ const Register = () => {
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <Toaster toastOptions={{ duration: 4000 }} />
         {user ? (
-          <h2 className="text-2xl font-semibold text-center mb-4">Welcome, {user.displayName}!</h2>
+          <h2 className="text-2xl font-semibold text-center mb-4">Welcome, {user.displayName} ,{user.email}!</h2>
+      
         ) : (
           <div>
             <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
