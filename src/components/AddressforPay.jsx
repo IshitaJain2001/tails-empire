@@ -1,13 +1,11 @@
 
 
 
-
 import React, { useState } from "react";
-import { db } from './firebase.config'; // Make sure this is your Firestore configuration
-import { setDoc, doc } from 'firebase/firestore';
-import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
-const AddressForm = () => {
+
+import { Link, useNavigate } from "react-router-dom";
+
+const AddressForBill = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState({
     name: "",
@@ -15,42 +13,33 @@ const AddressForm = () => {
     address: "",
     city: "",
     postalCode: "",
-    email: "", // Initialize to an empty string
   });
+
+  const storedName = localStorage.getItem("name"); // Retrieve name from localStorage
+  const name = storedName || "Guest"; // Fallback to "Guest" if no name found
+ 
+
+ 
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Form submission ko roken
-
-    const auth = getAuth(); // Firebase authentication instance lein
-    const user = auth.currentUser; // Current user ko lein
-
-    if (user) {
-        const userId = user.uid; // User ID retrieve karein
-
-        try {
-            // Firestore me address data set karna
-            const addressDocRef = doc(db, "users", userId); // Document reference sahi tarike se banayein
-            await setDoc(addressDocRef, address); // Address ko Firestore me set karein
-            alert("Address set successfully.");
-            navigate('/nextPage'); // Agle page par navigate kare
-        } catch (error) {
-            console.error("Error setting address: ", error);
-            alert("Failed to set address.");
-        }
-    } else {
-        alert("User not authenticated. Please log in.");
-    }
-};
+  const handleNext = () => {
+    navigate("/payment");
+  };
 
   return (
-    <div style={{ padding: "16px", marginTop: "90px", marginLeft: "300px" }}>
-      <h1 className="text-[30px] mb-[30px]">Hello, {address.name || "Guest"}</h1>
-      <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>Shipping Address</h1>
-      <form onSubmit={handleSubmit}>
+    <div
+      style={{
+        padding: "16px",
+        marginTop: "90px",
+        marginLeft: "300px",
+      }}
+    >
+      <h1 className="text-[30px] mb-[30px]">Hello, {name}</h1>
+      <h1 style={{ fontSize: "24px", fontWeight: "bold" }} >Shipping Address</h1>
+      <div style={{ margin: "16px 0" }}>
         <input
           type="text"
           name="name"
@@ -90,7 +79,8 @@ const AddressForm = () => {
           style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
-        <br />
+      </div>
+      <Link to="/payment">
         <button
           style={{
             backgroundColor: "#007bff",
@@ -100,14 +90,13 @@ const AddressForm = () => {
             borderRadius: "4px",
             cursor: "pointer",
           }}
-          type="submit"
+          onClick={handleNext}
         >
-          Set As Default
+          Proceed To Pay
         </button>
-      </form>
+      </Link>
     </div>
   );
 };
 
-export default React.memo(AddressForm);
-
+export default React.memo(AddressForBill);
