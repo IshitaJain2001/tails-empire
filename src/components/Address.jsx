@@ -1,28 +1,28 @@
+// 
 
 import React, { useState, useEffect } from "react";
 import { db } from './firebase.config'; // Make sure this is your Firestore configuration
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { toast, Toaster } from "react-hot-toast";
 
 const AddressForm = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
-  
+
   // Default state for address form
   const [address, setAddress] = useState({
-    name: "",
     phone: "",
     address: "",
     city: "",
     postalCode: "",
   });
 
-  // const userName = useSelector(state => state.userAdded); // Redux state for userName
-  const storedName = localStorage.getItem("name"); // Retrieve name from localStorage
-  const name = storedName || "Guest"; 
+  // Get user name from local storage
+  const userName = localStorage.getItem("name"); // Get name from local storage
+
   // Retrieve default address if already set
   useEffect(() => {
     if (user) {
@@ -50,57 +50,58 @@ const AddressForm = () => {
         const addressDocRef = doc(db, "users", user.uid);
         await setDoc(addressDocRef, address); // Store the address in Firestore
 
-        alert("Address set successfully.");
-        navigate('/nextPage'); // Redirect after submission
+        toast.success("Address set successfully!"); // Show toast notification
+        
+      // Redirect after submission
       } catch (error) {
         console.error("Error setting address: ", error);
-        alert("Failed to set address.");
+        toast.error("Failed to set address."); // Show error toast
       }
     } else {
-      alert("User not authenticated. Please log in.");
+      toast.error("User not authenticated. Please log in."); // Show error toast
     }
   };
 
   return (
     <div style={{ padding: "16px", marginTop: "90px", marginLeft: "300px" }}>
-      <h1 className="text-[30px] mb-[30px]">Hello, {name}</h1>
-      <h1 style={{ fontSize: "24px", fontWeight: "bold" }} >Shipping Address</h1>
+      <Toaster toastOptions={{ duration: 4000 }} /> {/* Ensure Toaster is here */}
+      <h1 className="text-[30px] mb-[30px]">Hello, {userName || "Guest"}</h1> {/* Displaying user name */}
+
+      <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>Shipping Address</h1>
       <form onSubmit={handleSubmit}>
-        
-        <br />
         <input
           type="text"
           name="phone"
-          value={address.phone} // Displaying the default value
+          value={address.phone}
           placeholder="Phone Number"
-          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
+          style={{ border: "1px solid", padding: "8px", width: "400px" }}
           onChange={handleChange}
         />
         <br />
         <input
           type="text"
           name="address"
-          value={address.address} // Displaying the default value
+          value={address.address}
           placeholder="Address"
-          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "10px" }}
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
         <input
           type="text"
           name="city"
-          value={address.city} // Displaying the default value
+          value={address.city}
           placeholder="City"
-          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "10px" }}
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
         <input
           type="text"
           name="postalCode"
-          value={address.postalCode} // Displaying the default value
+          value={address.postalCode}
           placeholder="Postal Code"
-          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "10px" }}
+          style={{ border: "1px solid", padding: "8px", width: "400px", marginTop: "8px" }}
           onChange={handleChange}
         />
         <br />
@@ -114,7 +115,6 @@ const AddressForm = () => {
             cursor: "pointer",
           }}
           type="submit"
-          className="mt-[10px]"
         >
           Set As Default
         </button>
@@ -123,6 +123,4 @@ const AddressForm = () => {
   );
 };
 
-export default React.memo(AddressForm);
-
-
+export default AddressForm;

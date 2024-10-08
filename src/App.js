@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Fishaccess from "./components/Fishaccess";
 import React from "react";
 import DogBreedsSection from "./components/DogsSection";
-import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Routes, Navigate } from 'react-router-dom';
 import Home from "./components/Home";
 import Cataccessories from "./components/Cataccessories";
 import Dogfood from "./components/Dogfoods";
@@ -21,6 +21,7 @@ import OrderSummary from "./components/Summary";
 import {useSelector } from "react-redux";
 
 import Husky from "./components/Husky";
+import Profilepage from "./components/Profilepage";
 
 
 function App() {
@@ -28,7 +29,7 @@ const state= useSelector(state=>state.wordsearched)
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-
+const registered= useSelector(state=>state.isRegistered)
   useEffect(() => {
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -71,7 +72,11 @@ const state= useSelector(state=>state.wordsearched)
             <Route path="/DOG-FOOD" element={<Dogfood/>}/>
             <Route path="/Turtle-food" element={<Turtlefood/>}/>
             <Route path="/Cat-food" element={<CatFood/>}/>
-            <Route path="/Profile" element={<Profile/>}/>
+            {registered ? (
+              <Route path="/Profile" element={<Profilepage />} />
+            ) : (
+              <Route path="/Profile" element={<Profile />} />
+            )}
             <Route path="/About" element={<AboutSection/>}/>
             <Route path="/Cart" element={<CartPage/>}/>
           

@@ -15,7 +15,7 @@ itemCount:0,
     productadded:[],
     productprices:[],
 userAdded:"",
-
+isRegistered:false,
 }
 const reducerfn=(state=initialState,action)=>{
   console.log(action)
@@ -58,7 +58,8 @@ switch(action.type){
 
      case 'user registered':return{
       ...state,
-      userAdded:action.payload
+      userAdded:action.payload,
+      isRegistered:true
      }
           default: return state
         }
