@@ -72,11 +72,10 @@ const registered= useSelector(state=>state.isRegistered)
             <Route path="/DOG-FOOD" element={<Dogfood/>}/>
             <Route path="/Turtle-food" element={<Turtlefood/>}/>
             <Route path="/Cat-food" element={<CatFood/>}/>
-            {registered ? (
-              <Route path="/Profile" element={<Profilepage />} />
-            ) : (
-              <Route path="/Profile" element={<Profile />} />
-            )}
+            <Route
+              path="/Profile"
+              element={registered ? <Profilepage /> : <Profile />}
+            />
             <Route path="/About" element={<AboutSection/>}/>
             <Route path="/Cart" element={<CartPage/>}/>
           
