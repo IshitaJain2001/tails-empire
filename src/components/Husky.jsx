@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import { toast, Toaster } from "react-hot-toast";
 import { useDispatch, useSelector} from 'react-redux';
 
  function Husky() {
@@ -39,10 +40,13 @@ payload:{
   item:item
 }
     })
+
+    toast.success("product added")
     console.log('dispatched')
  }
   return (
 <section className="dog-breeds-section py-10 mt-[50px]">
+<Toaster position="top-right" reverseOrder={false} />
       <h2 className="text-center text-4xl font-bold mb-6">huskies</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 ">
         {huskies.map((breed, index) => (
