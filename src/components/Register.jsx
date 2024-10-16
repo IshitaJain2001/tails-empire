@@ -1,65 +1,57 @@
 
 
 
+// components/Register.js
 import React, { useState } from "react";
-import { auth } from "./firebase.config";
-import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase.config"; 
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 const Register = () => {
-  const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false); 
   const navigate = useNavigate();
-  const dispatch= useDispatch()
+
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      setUser(user);
-      toast.success("Sign in successful!");
-      localStorage.setItem("name", user.displayName);
-      navigate("/Address"); // Redirect to address page
-      dispatch({
-        type:"user registered",
-        payload:user.displayName
-      })
+      toast.success("Google sign-in successful!");
+      localStorage.setItem("isRegistered", "true");
+      navigate("/address");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to sign in with Google.");
+      toast.error("Google sign-in failed.");
     }
   };
 
   const handleEmailSignUp = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      setUser(user);
+      await createUserWithEmailAndPassword(auth, email, password);
       toast.success("Registration successful!");
-      setEmail("");
-      setPassword("");
-      navigate("/address"); // Redirect to address page
-      console.log(user)
+      localStorage.setItem("isRegistered", "true");
+      navigate("/address");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to register.");
+      toast.error("Registration failed.");
     }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword); 
   };
 
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
@@ -68,98 +60,94 @@ const Register = () => {
       }}
     >
       <Toaster toastOptions={{ duration: 4000 }} />
-      {user ? (
-        <h2>Welcome, {user.displayName}!</h2>
-      ) : (
-        <div
-          style={{
-            background: "white",
-            borderRadius: "8px",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-            padding: "20px",
-            width: "300px",
-            textAlign: "center",
-          }}
-        >
-          <h1>Sign Up</h1>
-          <form onSubmit={handleEmailSignUp}>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: "#fff",
+          padding: "20px",
+          borderRadius: "8px",
+          boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+          width: "300px",
+        }}
+      >
+        <h1>Register</h1>
+        <form onSubmit={handleEmailSignUp}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <div style={{ position: "relative", width: "100%" }}>
             <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type={showPassword ? "text" : "password"} 
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               style={{
                 width: "100%",
                 padding: "10px",
-                margin: "10px 0",
-                border: "1px solid #ccc",
                 borderRadius: "4px",
+                border: "1px solid #ccc",
               }}
             />
-            <div style={{ position: "relative", width: "100%" }}>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  margin: "10px 0",
-                  border: "1px solid #ccc",
-                  borderRadius: "4px",
-                }}
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                style={{
-                  position: "absolute",
-                  right: "10px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                {showPassword ? "👁️" : "🙈"}
-              </button>
-            </div>
             <button
-              type="submit"
+              type="button"
+              onClick={togglePasswordVisibility}
               style={{
-                backgroundColor: "#007bff",
-                color: "white",
-                padding: "10px",
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "none",
                 border: "none",
-                borderRadius: "4px",
                 cursor: "pointer",
-                width: "100%",
               }}
             >
-              Sign Up with Email
+              {showPassword ? "👁️" : "🙈"}
             </button>
-          </form>
+          </div>
           <button
-            onClick={handleGoogleSignIn}
+            type="submit"
             style={{
-              backgroundColor: "#db4437",
-              color: "white",
+              marginTop: "10px",
               padding: "10px",
+              width: "100%",
+              backgroundColor: "#007bff",
+              color: "#fff",
               border: "none",
               borderRadius: "4px",
               cursor: "pointer",
-              width: "100%",
-              marginTop: "10px",
             }}
           >
-            Sign in with Google
+            Sign Up with Email
           </button>
-        </div>
-      )}
+        </form>
+        <button
+          onClick={handleGoogleSignIn}
+          style={{
+            marginTop: "10px",
+            padding: "10px",
+            width: "100%",
+            backgroundColor: "#db4437",
+            color: "#fff",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Sign in with Google
+        </button>
+      </div>
     </div>
   );
 };

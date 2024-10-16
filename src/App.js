@@ -26,7 +26,8 @@ import Profilepage from "./components/Profilepage";
 
 function App() {
 const state= useSelector(state=>state.wordsearched)
-
+const isRegistered = localStorage.getItem("isRegistered");
+const hasAddress = localStorage.getItem("hasAddress");
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 const registered= useSelector(state=>state.isRegistered)
@@ -74,7 +75,7 @@ const registered= useSelector(state=>state.isRegistered)
             <Route path="/Cat-food" element={<CatFood/>}/>
             <Route
               path="/Profile"
-              element={registered ? <Profilepage /> : <Profile />}
+              element={registered||hasAddress ? <Profilepage /> : <Profile />}
             />
             <Route path="/About" element={<AboutSection/>}/>
             <Route path="/Cart" element={<CartPage/>}/>
@@ -102,3 +103,7 @@ const registered= useSelector(state=>state.isRegistered)
 }
 
 export default React.memo(App);
+
+
+
+
