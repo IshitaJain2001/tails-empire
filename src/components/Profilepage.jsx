@@ -1,29 +1,3 @@
-// // Profilepage.js
-// import React, { useEffect, useState } from 'react';
-// import { getAuth } from 'firebase/auth';
-
-// export default function Profilepage() {
-//   const [userName, setUserName] = useState('');
-
-//   useEffect(() => {
-//     const auth = getAuth();
-//     const user = auth.currentUser;
-
-//     if (user) {
-//       const storedName = localStorage.getItem('name'); // Retrieve name from localStorage
-//       setUserName(storedName || 'Guest'); // If no name, default to 'Guest'
-//     } else {
-//       setUserName('Guest'); // If user not logged in
-//     }
-//   }, []);
-
-//   return (
-//     <div style={{ padding: '20px', fontSize: '24px' }}>
-//       Hello, {userName}!
-//     </div>
-//   );
-// }
-
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { db } from "./firebase.config"; // Adjust the path as needed for your Firebase config
@@ -31,11 +5,12 @@ import { doc, getDoc } from "firebase/firestore";
 
 const ProfilePage = () => {
   const [userName, setUserName] = useState("Guest"); // Default to "Guest"
+  const [loading, setLoading] = useState(true); // Add loading state
   const auth = getAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const user = auth.currentUser;
+      const user = auth.currentUser; // Get the current user
 
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
@@ -45,10 +20,23 @@ const ProfilePage = () => {
           console.log("No such user document!");
         }
       }
+      setLoading(false); // Set loading to false after fetching data
     };
 
-    fetchUserData();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchUserData(); // Fetch user data if the user is authenticated
+      } else {
+        setLoading(false); // If not authenticated, stop loading
+      }
+    });
+
+    return () => unsubscribe(); // Clean up subscription on unmount
   }, [auth]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message while fetching data
+  }
 
   return (
     <div>
