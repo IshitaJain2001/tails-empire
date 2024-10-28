@@ -2,14 +2,13 @@
 
 
 
-// import React, { useState, useEffect, useRef } from 'react';
+// import React, { useState, useEffect } from 'react';
 // import { doc, setDoc, getDoc } from 'firebase/firestore';
-// import { getAuth, onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import { db } from './firebase.config';
 
 // const AddressPage = () => {
 //   const auth = getAuth();
-//   const recaptchaContainer = useRef(null); // Recaptcha reference
 
 //   const [address, setAddress] = useState({
 //     street: '',
@@ -21,9 +20,6 @@
 
 //   const [isEditing, setIsEditing] = useState(false);
 //   const [loading, setLoading] = useState(true);
-//   const [otpSent, setOtpSent] = useState(false);
-//   const [otp, setOtp] = useState('');
-//   const [phoneVerified, setPhoneVerified] = useState(false);
 
 //   useEffect(() => {
 //     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -63,10 +59,6 @@
 //   };
 
 //   const handleSave = async () => {
-//     if (!phoneVerified) {
-//       alert('Please verify your phone number before saving.');
-//       return;
-//     }
 //     try {
 //       const user = auth.currentUser;
 //       if (user) {
@@ -80,60 +72,25 @@
 //     }
 //   };
 
-//   const sendOtp = () => {
-//     if (!address.phoneNumber) {
-//       alert('Please enter a valid phone number.');
-//       return;
-//     }
-
-//     const phoneNumber = `+91${address.phoneNumber}`; // Change country code as required
-
-//     window.recaptchaVerifier = new RecaptchaVerifier(
-//       recaptchaContainer.current,
-//       { size: 'invisible', callback: () => requestOtp(phoneNumber) },
-//       auth
-//     );
-//   };
-
-//   const requestOtp = (phoneNumber) => {
-//     signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
-//       .then((confirmationResult) => {
-//         window.confirmationResult = confirmationResult;
-//         alert('OTP sent!');
-//         setOtpSent(true);
-//       })
-//       .catch((error) => {
-//         console.error('Error sending OTP:', error);
-//         alert('Failed to send OTP. Try again.');
-//       });
-//   };
-
-//   const verifyOtp = () => {
-//     window.confirmationResult.confirm(otp)
-//       .then((result) => {
-//         alert('Phone number verified!');
-//         setPhoneVerified(true);
-//       })
-//       .catch((error) => {
-//         console.error('Invalid OTP:', error);
-//         alert('Invalid OTP. Please try again.');
-//       });
-//   };
-
 //   if (loading) return <p>Loading...</p>;
 
 //   return (
 //     <div style={{ padding: '16px', maxWidth: '400px', margin: 'auto' }}>
-//       <h2>Enter Address</h2>
+  
 //       {isEditing ? (
 //         <>
+//         <h1>  Default Address</h1>
+//         <label htmlFor="street">Street:</label>
 //           <input
+          
 //             type="text"
 //             name="street"
 //             value={address.street}
 //             onChange={handleChange}
 //             placeholder="Street"
 //           />
+//           <br />
+//           <label htmlFor="house Num">House Number:</label>
 //           <input
 //             type="text"
 //             name="houseNumber"
@@ -141,6 +98,8 @@
 //             onChange={handleChange}
 //             placeholder="House Number"
 //           />
+//           <br />
+//           <label htmlFor="Area">Area : </label>
 //           <input
 //             type="text"
 //             name="area"
@@ -148,6 +107,8 @@
 //             onChange={handleChange}
 //             placeholder="Area"
 //           />
+//           <br />
+//                <label htmlFor="pincode">Pin Code : </label>
 //           <input
 //             type="text"
 //             name="pinCode"
@@ -155,6 +116,8 @@
 //             onChange={handleChange}
 //             placeholder="Pin Code"
 //           />
+//             <br />
+//             <label htmlFor="phone">Phone Number : </label>
 //           <input
 //             type="text"
 //             name="phoneNumber"
@@ -162,26 +125,11 @@
 //             onChange={handleChange}
 //             placeholder="Phone Number"
 //           />
-//           <div ref={recaptchaContainer}></div>
-
-//           {otpSent ? (
-//             <>
-//               <input
-//                 type="text"
-//                 value={otp}
-//                 onChange={(e) => setOtp(e.target.value)}
-//                 placeholder="Enter OTP"
-//               />
-//               <button onClick={verifyOtp}>Verify OTP</button>
-//             </>
-//           ) : (
-//             <button onClick={sendOtp}>Send OTP</button>
-//           )}
-
 //           <button onClick={handleSave}>Save Address</button>
 //         </>
 //       ) : (
 //         <>
+//             {/* <h2>Enter Address</h2> */}
 //           <p>Street: {address.street || 'Not available'}</p>
 //           <p>House Number: {address.houseNumber || 'Not available'}</p>
 //           <p>Area: {address.area || 'Not available'}</p>
@@ -205,7 +153,6 @@ import { db } from './firebase.config';
 
 const AddressPage = () => {
   const auth = getAuth();
-
   const [address, setAddress] = useState({
     street: '',
     houseNumber: '',
@@ -213,16 +160,18 @@ const AddressPage = () => {
     pinCode: '',
     phoneNumber: '',
   });
-
+  const [userName, setUserName] = useState(''); // State for storing user name
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        setUserName(user.displayName || ''); // Get user name if available
         await fetchAddress(user.uid);
       } else {
         setAddress({});
+        setUserName('');
       }
       setLoading(false);
     });
@@ -242,7 +191,7 @@ const AddressPage = () => {
           setAddress(data);
           localStorage.setItem('address', JSON.stringify(data));
         } else {
-          setIsEditing(true);
+          setIsEditing(true); // Prompt to add an address if none exists
         }
       }
     } catch (error) {
@@ -272,12 +221,12 @@ const AddressPage = () => {
 
   return (
     <div style={{ padding: '16px', maxWidth: '400px', margin: 'auto' }}>
-  
+      {userName && <h2>Welcome, {userName}!</h2>}
+      
       {isEditing ? (
         <>
-        <label htmlFor="street">Street:</label>
+          <label htmlFor="street">Street:</label>
           <input
-          
             type="text"
             name="street"
             value={address.street}
@@ -285,7 +234,7 @@ const AddressPage = () => {
             placeholder="Street"
           />
           <br />
-          <label htmlFor="house Num">House Number:</label>
+          <label htmlFor="houseNumber">House Number:</label>
           <input
             type="text"
             name="houseNumber"
@@ -294,7 +243,7 @@ const AddressPage = () => {
             placeholder="House Number"
           />
           <br />
-          <label htmlFor="Area">Area : </label>
+          <label htmlFor="area">Area:</label>
           <input
             type="text"
             name="area"
@@ -303,7 +252,7 @@ const AddressPage = () => {
             placeholder="Area"
           />
           <br />
-               <label htmlFor="pincode">Pin Code : </label>
+          <label htmlFor="pinCode">Pin Code:</label>
           <input
             type="text"
             name="pinCode"
@@ -311,8 +260,8 @@ const AddressPage = () => {
             onChange={handleChange}
             placeholder="Pin Code"
           />
-            <br />
-            <label htmlFor="phone">Phone Number : </label>
+          <br />
+          <label htmlFor="phoneNumber">Phone Number:</label>
           <input
             type="text"
             name="phoneNumber"
@@ -324,13 +273,18 @@ const AddressPage = () => {
         </>
       ) : (
         <>
-            {/* <h2>Enter Address</h2> */}
-          <p>Street: {address.street || 'Not available'}</p>
-          <p>House Number: {address.houseNumber || 'Not available'}</p>
-          <p>Area: {address.area || 'Not available'}</p>
-          <p>Pin Code: {address.pinCode || 'Not available'}</p>
-          <p>Phone Number: {address.phoneNumber || 'Not available'}</p>
-          <button onClick={() => setIsEditing(true)}>Edit Address</button>
+          {address.street ? (
+            <>
+              <p>Street: {address.street}</p>
+              <p>House Number: {address.houseNumber}</p>
+              <p>Area: {address.area}</p>
+              <p>Pin Code: {address.pinCode}</p>
+              <p>Phone Number: {address.phoneNumber}</p>
+              <button onClick={() => setIsEditing(true)}>Edit Address</button>
+            </>
+          ) : (
+            <p>Please add your address.</p>
+          )}
         </>
       )}
     </div>
