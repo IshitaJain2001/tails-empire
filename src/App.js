@@ -25,6 +25,7 @@ import {useSelector } from "react-redux";
 
 import Husky from "./components/Husky";
 import Profilepage from "./components/Profilepage";
+import AddressforPay from "./components/AddressforPay";
 
 
 function App() {
@@ -87,6 +88,7 @@ const registered= useSelector(state=>state.isRegistered)
           <Route path="/login" element={<Login  />} />
        
             <Route path="/Address" element={<AddressForm/>}></Route>
+            <Route path="/Addressforpayment" element={<AddressforPay/>}></Route>
             <Route path="/Payment" element={<PaymentForm/>} ></Route>
             <Route path="/Order Summary" element={<OrderSummary/>}></Route>
             

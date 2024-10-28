@@ -145,7 +145,7 @@ const CartPage = () => {
 
               <div className="mt-6 flex justify-center">
                 <button
-                  onClick={() => navigate('/address')}
+                  onClick={() => navigate('/Addressforpayment')}
                   className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
                 >
                   Confirm Address
