@@ -27,6 +27,7 @@ import Husky from "./components/Husky";
 import Profilepage from "./components/Profilepage";
 import AddressforPay from "./components/AddressforPay";
 import Thankyou from "./components/Thankyou";
+import OnlinePayment from "./components/Onlinepayment";
 
 
 function App() {
@@ -95,6 +96,7 @@ const registered= useSelector(state=>state.isRegistered)
             
             <Route path="/Husky" element={<Husky/>}></Route>
             <Route path="/Thankyou" element={<Thankyou/>}/>
+            <Route path="/online-payment" element={<OnlinePayment/>}/>
           </Routes>
         </div>
 
