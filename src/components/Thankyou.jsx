@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+
 
 export default function Thankyou() {
   const deliveryDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString();
-
+  const dispatch= useDispatch()
+  useEffect(() => {
+    // Clear the cart when the Thank You page loads
+    dispatch({ type: 'CLEAR_CART' });
+}, [dispatch]);
   return (
     <div className="flex flex-col items-center justify-center p-8 border border-gray-300 rounded-lg shadow-lg bg-gray-100 max-w-md mx-auto">
       <h1 className="text-2xl font-bold text-green-600 mb-4">Thank You!</h1>
